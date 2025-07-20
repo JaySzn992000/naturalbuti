@@ -39,9 +39,10 @@ emailid: ""
 };
 
 
-const location = useLocation();
-const totalAmount = location.state?.totalAmount || 0;
-const quantities = location.state?.quantities || [];
+const reactLocation = useLocation();
+const totalAmount = reactLocation.state?.totalAmount || 0;
+const quantities = reactLocation.state?.quantities || [];
+
 
 
 useEffect(() => {
@@ -122,7 +123,7 @@ setIsProcessing(true); // 🟢 Immediately
 // show "Processing..."
 
 try {
-const response = await axios.post("http://localhost:3001/create-order", {
+const response = await axios.post("https://nitiaryapickle.onrender.com/create-order", {
 amount: totalAmount,
 });
 
@@ -143,7 +144,7 @@ return;
 
 
 const paymentVerificationResponse = await axios.post(
-"http://localhost:3001/verify-payment",
+"https://nitiaryapickle.onrender.com/verify-payment",
 response
 );
 
@@ -173,7 +174,7 @@ payment_status: "Sucessfull",
 
 
 await axios.post(
-"http://localhost:3001/addcartaddress",
+"https://nitiaryapickle.onrender.com/addcartaddress",
 dataToSend
 );
 resetForm();

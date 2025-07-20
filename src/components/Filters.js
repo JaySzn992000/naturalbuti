@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import NavigationClose from "../Logo/CloseTag.png";
 import "./Filters.css";
 
-
 const Filters = ({ allProducts, onFilterUpdate }) => {
 
 const [selectedNames, setSelectedNames] = useState([]);
