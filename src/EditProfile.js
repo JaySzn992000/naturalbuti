@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./headers_footer/navbar";
 import Header from "./headers_footer/header";
+import { useLocation } from "react-router";
 // import ProfileBG from "./Logo/ProfileBG.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 import "./Editform.css";
@@ -20,33 +21,26 @@ id: "",
 
 });
 
-useEffect(() => {
-const storedUser = localStorage.getItem("loggedInUser");
-if (storedUser) {
-const user = JSON.parse(storedUser);
-setLoggedInUser(user);
-setFormdata({
-name: user.name || "",
-email: user.email || "",
-password: user.password || "",
-mobileno: user.mobileno || "",
-id: user.id || "",
-});
-}
 
-if (location.state && location.state.loggedInUser) {
-const user = location.state.loggedInUser;
-setLoggedInUser(user);
-setFormdata({
-name: user.name || "",
-email: user.email || "",
-password: user.password || "",
-mobileno: user.mobileno || "",
-id: user.id || "",
-});
-localStorage.setItem("loggedInUser", JSON.stringify(user));
-}
-}, [location.state]);
+const location = useLocation();
+const incomingUser = location?.state?.loggedInUser;
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("loggedInUser");
+  const user = incomingUser || (storedUser && JSON.parse(storedUser));
+
+  if (user) {
+    setLoggedInUser(user);
+    setFormdata({
+      name: user.name || "",
+      email: user.email || "",
+      password: user.password || "",
+      mobileno: user.mobileno || "",
+      id: user.id || "",
+    });
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+  }
+}, [incomingUser]);
 
 
 const handleInputChange = (e) => {
@@ -117,7 +111,7 @@ return;
 }
 
 try {
-const response = await fetch("http://localhost:3001/updateform", {
+const response = await fetch("https://nitiaryapickle.onrender.com/updateform", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
