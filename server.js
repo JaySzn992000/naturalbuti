@@ -14,10 +14,14 @@ const pool = require("./config");
 
 
 app.use(cors({
-origin: ['https://naturalbuti-j8w5.vercel.app'], 
-methods: ['GET', 'POST'],
-credentials: true
+  origin: [
+    'https://nitiaryapickle-po28.vercel.app',
+    'https://naturalbuti-j8w5.vercel.app'  
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
+
 
 
 app.use(express.json());
