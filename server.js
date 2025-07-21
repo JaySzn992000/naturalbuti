@@ -1474,44 +1474,41 @@ error: err.message,
 
 
 app.post("/registerAdmin", async (req, res) => {
-const { adminuser, adminpass } = req.body;
+  const { adminuser, adminpass } = req.body;
 
-if (!adminuser || !adminpass) {
-return res.status(400).json({
-success: false,
-message: "Username and password are required",
-});
-}
+  try {
+    // Step 1: Check for duplicate admin username
+    const checkAdminQuery = `
+      SELECT adminuser FROM _admindashboard WHERE adminuser = $1 LIMIT 1
+    `;
+    const adminResult = await pool.query(checkAdminQuery, [adminuser]);
 
-const checkAdminQuery = "SELECT * FROM _admindashboard WHERE adminuser = $1";
-const insertAdminQuery =
-"INSERT INTO _admindashboard (adminuser, adminpass) VALUES ($1, $2)";
+    if (adminResult.rows.length > 0) {
+      return res.status(200).json({
+        success: false,
+        message: "Admin username already registered",
+      });
+    }
 
-try {
-const result = await pool.query(checkAdminQuery, [adminuser]);
+    // Step 2: Insert new admin
+    const insertAdminQuery = `
+      INSERT INTO _admindashboard (adminuser, adminpass)
+      VALUES ($1, $2)
+    `;
+    await pool.query(insertAdminQuery, [adminuser, adminpass]);
 
-if (result.rows.length > 0) {
-return res.status(409).json({
-success: false,
-message: "Admin username already exists!",
-});
-}
+    return res.status(200).json({
+      success: true,
+      message: "Admin registered successfully",
+    });
 
-await pool.query(insertAdminQuery, [adminuser, adminpass]);
-
-console.log("Admin registered successfully!");
-return res.status(201).json({
-success: true,
-message: "Admin registered successfully!",
-});
-} catch (err) {
-console.error("Error inserting admin:", err.message);
-return res.status(500).json({
-success: false,
-message: "Server error while registering admin",
-error: err.message,
-});
-}
+  } catch (err) {
+    console.error("❌ Admin registration error:", err.message);
+    return res.status(500).json({
+      success: false,
+      message: "System error. Please try later.",
+    });
+  }
 });
 
 

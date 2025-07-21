@@ -18,8 +18,8 @@ useEffect(() => {
 const customerFetch = async () => {
 try {
     // http://192.168.1.4:3000
-    // http://localhost:3001/fetchCutomerOrder
-const response = await fetch("http://localhost:3001/fetchCutomerOrder");
+    // https://nitiaryapickle.onrender.com/fetchCutomerOrder
+const response = await fetch("https://nitiaryapickle.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 setAllCustomerOrders(data.products);
 setcustomerOrder(data.products);
@@ -60,7 +60,7 @@ const customerFetch = async () => {
 
 try {
 
-const response = await fetch("http://localhost:3001/fetchCutomerOrder");
+const response = await fetch("https://nitiaryapickle.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 setcustomerOrder(data.products);
 settotalcustProducts(data.total);
@@ -114,7 +114,7 @@ return `${month}-${day}-${year}`;
 const updateStatus = async (orderId) => {
 
 try {
-const response = await fetch("http://localhost:3001/updateOrderStatus", {
+const response = await fetch("https://nitiaryapickle.onrender.com/updateOrderStatus", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",

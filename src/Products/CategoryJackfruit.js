@@ -17,7 +17,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistBlazers")
+.get("https://nitiaryapickle.onrender.com/fetchProductslistBlazers")
 .then((response) => {
 console.log("Fetched Amla Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -34,7 +34,7 @@ console.error("Error fetching Amla Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://nitiaryapickle.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {

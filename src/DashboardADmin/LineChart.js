@@ -36,7 +36,7 @@ data: [],
 useEffect(() => {
 const customerFetch = async () => {
 try {
-const response = await fetch("http://localhost:3001/fetchCutomerOrder");
+const response = await fetch("https://nitiaryapickle.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 
 // Month-wise 

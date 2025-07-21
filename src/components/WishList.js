@@ -32,7 +32,7 @@ useEffect(() => {
 const fetchProductData = async () => {
 try {
 const response = await axios.get(
-"http://localhost:3001/fetchProductslist"
+"https://nitiaryapickle.onrender.com/fetchProductslist"
 );
 setProductData(response.data);
 } catch (error) {

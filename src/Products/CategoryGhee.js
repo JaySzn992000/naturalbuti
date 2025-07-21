@@ -19,7 +19,7 @@ const query = new URLSearchParams(location.search).get("search"); // Extract '
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistTrouser")
+.get("https://nitiaryapickle.onrender.com/fetchProductslistTrouser")
 .then((response) => {
 console.log("Fetched Ghee products:", response.data); 
 setAllProducts(response.data); 
@@ -37,7 +37,7 @@ console.error("Error fetching Ghee products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://nitiaryapickle.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {

@@ -15,7 +15,7 @@ const DbFetch = async () => {
 
 try {
 
-const response = await fetch("http://localhost:3001/fetchDB");
+const response = await fetch("https://nitiaryapickle.onrender.com/fetchDB");
 
 const data = await response.json();
 
