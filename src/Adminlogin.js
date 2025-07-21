@@ -50,9 +50,9 @@ return;
 
 try {
 
-// https://nitiaryapickle.onrender.com/fetchAdmin
+// https://naturalbuti.onrender.com/fetchAdmin
 
-const response = await fetch("https://nitiaryapickle.onrender.com/fetchAdmin", {
+const response = await fetch("https://naturalbuti.onrender.com/fetchAdmin", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
