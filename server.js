@@ -1474,16 +1474,15 @@ error: err.message,
 
 
 app.post('/registerAdmin', async (req, res) => {
-  
   const { adminuser, adminpass } = req.body;
 
   try {
-    const insertQuery = `
-      INSERT INTO _admindashboard (adminuser, adminpass)
-      VALUES ($1, $2)
-    `;
-    await pool.query(insertQuery, [adminuser, adminpass]);
-
+  const insertAdminQuery = `
+  INSERT INTO _admindashboard (adminuser, adminpass)
+  VALUES ($1, $2)
+  `;
+  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+  
     return res.status(200).json({
       success: true,
       message: "Admin registered successfully"
@@ -1495,7 +1494,7 @@ app.post('/registerAdmin', async (req, res) => {
       message: "Server error while registering admin"
     });
   }
-
+  
 });
 
 
