@@ -1394,7 +1394,7 @@ const { adminuser, adminpass } = req.body;
 
 const loginQuery = `
 SELECT * FROM _admindashboard
-WHERE _adminuser = $1 AND _adminpass = $2
+WHERE adminuser = $1 AND adminpass = $2
 `;
 
 try {
@@ -1483,9 +1483,9 @@ message: "Username and password are required",
 });
 }
 
-const checkAdminQuery = "SELECT * FROM _admindashboard WHERE _adminuser = $1";
+const checkAdminQuery = "SELECT * FROM _admindashboard WHERE adminuser = $1";
 const insertAdminQuery =
-"INSERT INTO _admindashboard (_adminuser, _adminpass) VALUES ($1, $2)";
+"INSERT INTO _admindashboard (adminuser, adminpass) VALUES ($1, $2)";
 
 try {
 const result = await pool.query(checkAdminQuery, [adminuser]);
