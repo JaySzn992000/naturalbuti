@@ -1473,42 +1473,29 @@ error: err.message,
 // });
 
 
-app.post("/registerAdmin", async (req, res) => {
+app.post('/registerAdmin', async (req, res) => {
+  
   const { adminuser, adminpass } = req.body;
 
   try {
-    // Step 1: Check for duplicate admin username
-    const checkAdminQuery = `
-      SELECT adminuser FROM _admindashboard WHERE adminuser = $1 LIMIT 1
-    `;
-    const adminResult = await pool.query(checkAdminQuery, [adminuser]);
-
-    if (adminResult.rows.length > 0) {
-      return res.status(200).json({
-        success: false,
-        message: "Admin username already registered",
-      });
-    }
-
-    // Step 2: Insert new admin
-    const insertAdminQuery = `
+    const insertQuery = `
       INSERT INTO _admindashboard (adminuser, adminpass)
       VALUES ($1, $2)
     `;
-    await pool.query(insertAdminQuery, [adminuser, adminpass]);
+    await pool.query(insertQuery, [adminuser, adminpass]);
 
     return res.status(200).json({
       success: true,
-      message: "Admin registered successfully",
+      message: "Admin registered successfully"
     });
-
   } catch (err) {
-    console.error("❌ Admin registration error:", err.message);
+    console.error("Error in /registerAdmin:", err);
     return res.status(500).json({
       success: false,
-      message: "System error. Please try later.",
+      message: "Server error while registering admin"
     });
   }
+
 });
 
 
