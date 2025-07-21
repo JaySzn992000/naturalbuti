@@ -1475,6 +1475,7 @@ error: err.message,
 
 app.post('/registerAdmin', async (req, res) => {
   const { adminuser, adminpass } = req.body;
+    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
 
   try {
   const insertAdminQuery = `
@@ -1482,7 +1483,7 @@ app.post('/registerAdmin', async (req, res) => {
   VALUES ($1, $2)
   `;
   await pool.query(insertAdminQuery, [adminuser, adminpass]); 
-  
+
     return res.status(200).json({
       success: true,
       message: "Admin registered successfully"
