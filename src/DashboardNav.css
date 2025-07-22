@@ -50,6 +50,7 @@ cursor: pointer;
 .nav_insidenav .dashboard_firstContainer .fa-bars {
 margin-right: 0.7em;
 cursor: pointer;
+filter: invert(0);
 }
 
 
