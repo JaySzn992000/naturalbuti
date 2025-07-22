@@ -5,7 +5,6 @@ position: fixed;
 width: 100%;
 padding: 7px;
 top: 0;
-background-color: #FFFFFF;
 box-shadow: 0 4px 6px rgba(10, 8, 8, 0.052);
 color: #FFFFFF;
 z-index: 999;
@@ -47,9 +46,11 @@ width: 29px;
 cursor: pointer;
 }
 
+
 .nav_insidenav .dashboard_firstContainer .fa-bars {
 margin-right: 0.7em;
 cursor: pointer;
+filter: invert(0);
 }
 
 

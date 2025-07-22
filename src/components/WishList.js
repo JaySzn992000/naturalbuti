@@ -32,7 +32,7 @@ useEffect(() => {
 const fetchProductData = async () => {
 try {
 const response = await axios.get(
-"https://nitiaryapickle.onrender.com/fetchProductslist"
+"https://naturalbuti.onrender.com/fetchProductslist"
 );
 setProductData(response.data);
 } catch (error) {
@@ -45,7 +45,7 @@ fetchProductData();
 
 const getProductImagePath = (productId) => {
 const product = productData.find((p) => p.id === productId);
-return product ? `http://localhost:3001${product.file_path}` : "";
+return product ? `https://naturalbuti.onrender.com${product.file_path}` : "";
 };
 
 
@@ -86,6 +86,7 @@ className="wishlist_item"
 {/*  */}
 
 <div>
+
 <img
 src={getProductImagePath(item.id)}
 alt={item.name}

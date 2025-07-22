@@ -32,6 +32,7 @@ navContainer ? "navContainer-inside" : ""
 
 <section className="dashboard_firstContainer">
 <div>
+
 <img
 className="fa fa-bars"
 onClick={toggleSidebar}
@@ -39,6 +40,7 @@ src="https://cdn-icons-png.flaticon.com/128/5259/5259008.png"
 alt=""
 loading="lazy"
 ></img>
+
 <img src="https://cdn-icons-png.flaticon.com/128/4675/4675164.png"
 alt=""
 loading="lazy"
