@@ -42,6 +42,13 @@ res.send("✅ Backend is Live & Working");
 });
 
 
+app.get("/ping", (req, res) => {
+  res.status(200).send("Server is alive!");
+});
+
+const axios = require("axios");
+
+
 app.get("/registeration", async (req, res) => {
 try {
 const result = await pool.query("SELECT * FROM public._registeration");
@@ -1689,6 +1696,19 @@ res.status(500).json({ message: "Database update error", error: err.message });
 app.listen(PORT, () => {
 console.log(`Server is running PORT on ${PORT}`);
 });
+
+
+setInterval(() => {
+  axios
+    .get("https://naturalbuti.onrender.com/ping")
+    .then(() => {
+      console.log("Pinged self to stay awake");
+    })
+    .catch((err) => {
+      console.error("Ping failed", err.message);
+    });
+}, 10 * 60 * 1000); 
+
 
 
 // for mobile ..
