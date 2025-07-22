@@ -138,7 +138,7 @@ className="seeLLProducts">View All</button>
 <Contactus></Contactus>
 
 <a
-href='test1'>
+href='https://web.whatsapp.com/'>
 <img
 className="whatsapp_message"
 src="https://cdn-icons-png.freepik.com/256/3983/3983877.png?semt=ais_hybrid"
