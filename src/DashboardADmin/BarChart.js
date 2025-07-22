@@ -56,7 +56,7 @@ const fetchCustomerOrders = async () => {
 
 try {
 
-const response = await fetch("http://localhost:3001/fetchCutomerOrder");
+const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 
 // Month-wise 
