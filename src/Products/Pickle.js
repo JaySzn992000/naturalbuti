@@ -114,7 +114,7 @@ wishlistStatus[product.id] ? "active_wishlist" : ""
 
 <Link to={`/product/${product.id}`}>
 <img
-src={`http://localhost:3001${product.file_path}`}
+src={`https://naturalbuti.onrender.com${product.file_path}`}
 alt={product.name}
 className="product_image"
 />
