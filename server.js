@@ -1722,9 +1722,6 @@ setInterval(() => {
 // Razorpay
 // configuration
 
-// rzp_live_Kh5Fut1EpwDwF5
-// zV2WqzWm6CTf3qH5i0xnO1La
-
 
 const razorpayInstance = new Razorpay({
 key_id: "rzp_live_Kh5Fut1EpwDwF5", //  Razorpay key_id
