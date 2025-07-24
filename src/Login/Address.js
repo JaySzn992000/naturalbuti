@@ -14,7 +14,7 @@ const [loggedInUser, setLoggedInUser] = useState(null);
 const [cartProducts, setCartProducts] = useState([]);
 const [formData, setFormData] = useState({
 gender: "Mr.",
-addressname: "",
+add_name: "",
 country: "",
 pincode: "",
 address: "",
@@ -27,7 +27,7 @@ emailid: ""
 const resetForm = () => {
 setFormData({
 gender: "Mr.",
-addressname: "",
+add_name: "",
 country: "",
 pincode: "",
 address: "",
@@ -65,7 +65,7 @@ setFormData({
 
 const validateForm = () => {
 
-const alphaOnly = formData.addressname.replace(/[^a-zA-Z]/g, '');
+const alphaOnly = formData.add_name.replace(/[^a-zA-Z]/g, '');
 if (alphaOnly.length < 3) {
 alert("Name must be at least 3 characters long.");
 return false;
@@ -244,8 +244,8 @@ required
 className="inputAddress"
 type="text"
 placeholder="Name"
-name="addressname"
-value={formData.addressname}
+name="add_name"
+value={formData.add_name}
 onChange={handleChange}
 required
 />
