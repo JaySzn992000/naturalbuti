@@ -1237,43 +1237,46 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 //
 
 
+
 app.post("/resetAdminPassword", async (req, res) => {
-const { adminuser, newPassword } = req.body;
+  const { adminuser, newPassword } = req.body;
 
-if (!adminuser || !newPassword) {
-return res.status(400).json({
-success: false,
-message: "Username and new password are required",
-});
-}
+  if (!adminuser || !newPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Username and new password are required",
+    });
+  }
 
-const checkUserQuery = "SELECT * FROM _admindashboard WHERE _adminuser = $1";
-const updatePasswordQuery =
-"UPDATE _admindashboard SET _adminpass = $1 WHERE _adminuser = $2";
+  // SQL query to check if the user exists
+  const checkUserQuery = "SELECT * FROM _admindashboard WHERE adminuser = $1";
+  const updatePasswordQuery =
+    "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2";
 
-try {
-const result = await pool.query(checkUserQuery, [adminuser]);
+  try {
+    const result = await pool.query(checkUserQuery, [adminuser]);
 
-if (result.rows.length === 0) {
-return res
-.status(404)
-.json({ success: false, message: "User not found!" });
-}
+    if (result.rows.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found!" });
+    }
 
-await pool.query(updatePasswordQuery, [newPassword, adminuser]);
+    // Update the password
+    await pool.query(updatePasswordQuery, [newPassword, adminuser]);
 
-console.log("Password updated successfully!");
-return res
-.status(200)
-.json({ success: true, message: "Password updated successfully!" });
-} catch (err) {
-console.error("Error:", err.message);
-return res.status(500).json({
-success: false,
-message: "Error occurred while processing your request",
-error: err.message,
-});
-}
+    console.log("Password updated successfully!");
+    return res
+      .status(200)
+      .json({ success: true, message: "Password updated successfully!" });
+  } catch (err) {
+    console.log("Error:", err.message);
+    return res.status(500).json({
+      success: false,
+      message: "Error updating password",
+      error: err.message,
+    });
+  }
 });
 
 
