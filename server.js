@@ -1584,7 +1584,7 @@ try {
 const client = await pool.connect();
 
 const insertQuery = `
-INSERT INTO custorder (
+INSERT INTO _custorder (
 name, mob, email, id, productname, price, quantity,
 gender, add_name, country, pincode, address, state,
 mobilenumber, alternativenumber, emailid,
