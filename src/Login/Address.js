@@ -172,6 +172,7 @@ payment_status: "Sucessfull",
 },
 };
 
+console.log("🚀 dataToSend to backend:", JSON.stringify(dataToSend, null, 2));
 
 await axios.post(
 "https://naturalbuti.onrender.com/addcartaddress",
