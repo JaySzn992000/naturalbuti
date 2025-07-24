@@ -196,7 +196,13 @@ Dashcontainer ? "DashContainer-inside" : ""
 <img src={OrdersDashEarn} loading="lazy" alt="Orders Dashboard" />
 <div>
 <h4>Total Earning:</h4>
-<h2> ₹ {''} {totalAmount}</h2>
+<h2> ₹ {''} 
+{totalAmount.toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
+    minimumFractionDigits: 2,
+  })}
+</h2>
 </div>
 </div>
 
