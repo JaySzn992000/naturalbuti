@@ -1482,14 +1482,33 @@ error: err.message,
 
 app.post('/registerAdmin', async (req, res) => {
   const { adminuser, adminpass } = req.body;
-    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+  console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+
+  if (!adminuser || !adminpass) {
+    return res.status(400).json({
+      success: false,
+      message: "Username and password are required"
+    });
+  }
 
   try {
-  const insertAdminQuery = `
-  INSERT INTO _admindashboard (adminuser, adminpass)
-  VALUES ($1, $2)
-  `;
-  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+    // 🔍 Same variable name: checkAdminQuery
+    const checkAdminQuery = `SELECT * FROM _admindashboard WHERE adminuser = $1`;
+    const result = await pool.query(checkAdminQuery, [adminuser]);
+
+    if (result.rows.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "Admin username already exists!"
+      });
+    }
+
+    // 💾 Insert with same variable name
+    const insertAdminQuery = `
+      INSERT INTO _admindashboard (adminuser, adminpass)
+      VALUES ($1, $2)
+    `;
+    await pool.query(insertAdminQuery, [adminuser, adminpass]);
 
     return res.status(200).json({
       success: true,
@@ -1502,7 +1521,6 @@ app.post('/registerAdmin', async (req, res) => {
       message: "Server error while registering admin"
     });
   }
-  
 });
 
 
