@@ -1322,43 +1322,43 @@ app.post("/resetAdminPassword", async (req, res) => {
 
 
 app.post("/updateAdminSimple", async (req, res) => {
-const { olduser, adminuser, adminpass } = req.body;
+  const { olduser, adminuser, adminpass } = req.body;
 
-if (!olduser || !adminuser || !adminpass) {
-return res
-.status(400)
-.json({ success: false, message: "All fields are required." });
-}
+  if (!olduser || !adminuser || !adminpass) {
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required." });
+  }
 
-const updateQuery = `
-UPDATE _admindashboard
-SET _adminuser = $1, _adminpass = $2
-WHERE _adminuser = $3
-`;
+  const updateQuery = `
+    UPDATE _admindashboard
+    SET adminuser = $1, adminpass = $2
+    WHERE adminuser = $3
+  `;
 
-try {
-const result = await pool.query(updateQuery, [adminuser, adminpass, olduser]);
+  try {
+    const result = await pool.query(updateQuery, [adminuser, adminpass, olduser]);
 
-if (result.rowCount === 0) {
-return res
-.status(404)
-.json({ success: false, message: "Admin not found." });
-}
+    if (result.rowCount === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin not found." });
+    }
 
-return res
-.status(200)
-.json({ success: true, message: "Admin updated successfully." });
-} catch (err) {
-console.error("Update error:", err.message);
-return res
-.status(500)
-.json({
-success: false,
-message: "Server error while updating admin.",
-error: err.message,
+    return res
+      .status(200)
+      .json({ success: true, message: "Admin updated successfully." });
+  } catch (err) {
+    console.error("Update error:", err.message);
+    return res
+      .status(500)
+      .json({
+        success: false,
+        message: "Server error while updating admin.",
+      });
+  }
 });
-}
-});
+
 
 // Admin
 //  Registeration ...
