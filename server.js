@@ -2257,31 +2257,31 @@ res.status(500).json({ error: "DB error", details: err.message });
 // });
 
 
-app.post("/updateOrderStatus", (req, res) => {
 
-const { razorpay_order_id } = req.body;
+app.post("/updateOrderStatus", async (req, res) => {
+  const { razorpay_order_id } = req.body;
 
-const updateQuery = `
-UPDATE _custorder 
-SET status_order = 'Order Delivered' 
-WHERE razorpay_order_id = ?
-`;
+  if (!razorpay_order_id) {
+    return res.status(400).json({ success: false, message: "Missing order ID" });
+  }
 
+  try {
+    const result = await pool.query(
+      `UPDATE _custorder SET status_order = 'Order Delivered' WHERE razorpay_order_id = $1`,
+      [razorpay_order_id]
+    );
 
-db.query(updateQuery, [razorpay_order_id], (err, result) => {
-if (err) {
-console.log("Update error:", err);
-return res.status(500).json({ success: false, message: "DB error" });
-}
+    if (result.rowCount === 0) {
+      return res.status(404).json({ success: false, message: "Order not found" });
+    }
 
-if (result.affectedRows === 0) {
-return res.status(404).json({ success: false, message: "Order not found" });
-}
-
-res.status(200).json({ success: true, message: "Order status updated" });
-
+    res.status(200).json({ success: true, message: "Order status updated" });
+  } catch (err) {
+    console.error("Update error:", err.message);
+    res.status(500).json({ success: false, message: "Database error" });
+  }
 });
-});
+
 
 
 // app.get("/usertotalnofo", (req, res) => {
