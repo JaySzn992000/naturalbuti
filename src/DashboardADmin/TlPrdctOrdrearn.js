@@ -46,7 +46,7 @@ const data = await response.json();
 setCustomerOrder(data.products);
 setTotalcustProducts(data.total);
 const amount = data.products.reduce(
-(acc, item) => acc + (item.amount || 0),
+(acc, item) => acc + Number(item.amount || 0),
 0
 );
 setTotalAmount(amount);
