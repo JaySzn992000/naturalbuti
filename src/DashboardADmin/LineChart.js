@@ -22,12 +22,12 @@ const LineChart = () => {
       colors: ["#00BFFF"],
       tooltip: {
         y: {
-          formatter: (val) => `₹ ${val.toFixed(2)}`,  // ✅ formatted here
+          formatter: (val) => `₹ ${Number(val.toFixed(0))}`, // ✅ clean ₹ only
         },
       },
       yaxis: {
         labels: {
-          formatter: (val) => `₹ ${val.toFixed(2)}`,  // ✅ formatted here
+          formatter: (val) => `₹ ${Number(val.toFixed(0))}`, // ✅ clean ₹ only
         },
       },
     },
@@ -55,37 +55,28 @@ const LineChart = () => {
         }, {});
 
         const formattedData = Object.entries(earningsByMonth).map(([monthYear, total]) => ({
-  monthYear,
-  total: Number(total.toFixed(0)),  // 👈 No decimal
-}));
+          monthYear,
+          total: Number(total.toFixed(0)), // ✅ only ₹ integers
+        }));
 
-setChartData((prevState) => ({
-  ...prevState,
-  options: {
-    ...prevState.options,
-    xaxis: {
-      ...prevState.options.xaxis,
-      categories: formattedData.map((item) => item.monthYear),
-    },
-    tooltip: {
-      y: {
-        formatter: (val) => `₹ ${val.toFixed(0)}`,  // 👈 No decimal
-      },
-    },
-    yaxis: {
-      labels: {
-        formatter: (val) => `₹ ${val.toFixed(0)}`,  // 👈 No decimal
-      },
-    },
-  },
-  series: [
-    {
-      name: "Earnings",
-      data: formattedData.map((item) => item.total),
-    },
-  ],
-}));
-        
+        console.log("Final Data:", formattedData); // 🐞 Debug
+
+        setChartData((prevState) => ({
+          ...prevState,
+          options: {
+            ...prevState.options,
+            xaxis: {
+              ...prevState.options.xaxis,
+              categories: formattedData.map((item) => item.monthYear),
+            },
+          },
+          series: [
+            {
+              name: "Earnings",
+              data: formattedData.map((item) => item.total),
+            },
+          ],
+        }));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -98,6 +89,7 @@ setChartData((prevState) => ({
     <div className="linechart-container">
       <h3 className="ChartsTg">Monthly Earnings by LineChart</h3>
       <label>Sales/Revenue</label>
+
       <ReactApexChart
         options={chartData.options}
         series={chartData.series}
