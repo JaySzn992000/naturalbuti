@@ -60,31 +60,32 @@ total,
 }));
 
 setChartData((prevState) => ({
-...prevState,
-options: {
-...prevState.options,
-xaxis: {
-...prevState.options.xaxis,
-categories: formattedData.map((item) => item.monthYear),
-},
-tooltip: {
-y: {
-formatter: (val) => `₹ ${val}`,
-},
-},
-yaxis: {
-labels: {
-formatter: (val) => `₹ ${val}`,
-},
-},
-},
-series: [
-{
-name: "Earnings",
-data: formattedData.map((item) => item.total),
-},
-],
+  ...prevState,
+  options: {
+    ...prevState.options,
+    xaxis: {
+      ...prevState.options.xaxis,
+      categories: formattedData.map((item) => item.monthYear),
+    },
+    tooltip: {
+      y: {
+        formatter: (val) => `₹ ${val.toFixed(2)}`,  // 👈 fixed
+      },
+    },
+    yaxis: {
+      labels: {
+        formatter: (val) => `₹ ${val.toFixed(2)}`,  // 👈 fixed
+      },
+    },
+  },
+  series: [
+    {
+      name: "Earnings",
+      data: formattedData.map((item) => item.total),
+    },
+  ],
 }));
+
   
 } catch (error) {
 console.error("Error fetching data:", error);
