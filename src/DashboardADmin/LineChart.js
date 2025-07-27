@@ -55,8 +55,7 @@ return acc;
 
 const formattedData = Object.entries(earningsByMonth).map(([monthYear, total]) => ({
 monthYear,
-total,
-
+total: Number(total.toFixed(2)),
 }));
 
 setChartData((prevState) => ({
