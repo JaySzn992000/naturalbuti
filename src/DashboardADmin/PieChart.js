@@ -8,55 +8,43 @@ const [labels, setLabels] = useState([]);
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-const fetchData = async () => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
+      const data = await response.json();
 
-try {
-const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
-const data = await response.json();
+      if (!data.products || !Array.isArray(data.products)) {
+        throw new Error("Invalid data format");
+      }
 
-if (!data.products || !Array.isArray(data.products)) {
-throw new Error("Invalid data format");
-}
+      const monthlyEarnings = {};
+      data.products.forEach(item => {
+        const dateObj = new Date(item.date);
+        const key = `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}`;
+        monthlyEarnings[key] = (monthlyEarnings[key] || 0) + (item.amount || 0);
+      });
 
-// Group earnings 
-// by month
+      const sortedKeys = Object.keys(monthlyEarnings).sort();
 
-const monthlyEarnings = {};
-data.products.forEach(item => {
-const dateObj = new Date(item.date);
-const month = dateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
-monthlyEarnings[month] = (monthlyEarnings[month] || 0) + (item.amount || 0);
-});
+      const calculatedSeries = sortedKeys.map(key => monthlyEarnings[key]);
+      const calculatedLabels = sortedKeys.map(key => {
+        const [year, month] = key.split("-");
+        const date = new Date(`${year}-${month}-01`);
+        return date.toLocaleString('default', { month: 'short', year: 'numeric' }) +
+          ` (₹${monthlyEarnings[key].toLocaleString()})`;
+      });
 
-// Sort months 
-// chronologically
+      setSeries(calculatedSeries);
+      setLabels(calculatedLabels);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
 
-const sortedMonths = Object.keys(monthlyEarnings).sort((a, b) => {
-return new Date(a) - new Date(b);
-});
-
-
-// Prepare data 
-// for the chart
-
-const calculatedSeries = sortedMonths.map(month => monthlyEarnings[month]);
-const calculatedLabels = sortedMonths.map(month => {
-const earnings = monthlyEarnings[month];
-return `${month} (₹${earnings.toLocaleString()})`;
-});
-
-setSeries(calculatedSeries);
-setLabels(sortedMonths); 
-setLoading(false);
-} catch (error) {
-console.error("Error fetching data:", error);
-setLoading(false);
-}
-};
-
-fetchData();
-
-}, [] );
+  fetchData();
+}, []);
 
 
 const options = {
