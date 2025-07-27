@@ -55,26 +55,37 @@ const LineChart = () => {
         }, {});
 
         const formattedData = Object.entries(earningsByMonth).map(([monthYear, total]) => ({
-          monthYear,
-          total: Number(total.toFixed(2)),  // ✅ round here
-        }));
+  monthYear,
+  total: Number(total.toFixed(0)),  // 👈 No decimal
+}));
 
-        setChartData((prevState) => ({
-          ...prevState,
-          options: {
-            ...prevState.options,
-            xaxis: {
-              ...prevState.options.xaxis,
-              categories: formattedData.map((item) => item.monthYear),
-            },
-          },
-          series: [
-            {
-              name: "Earnings",
-              data: formattedData.map((item) => item.total),
-            },
-          ],
-        }));
+setChartData((prevState) => ({
+  ...prevState,
+  options: {
+    ...prevState.options,
+    xaxis: {
+      ...prevState.options.xaxis,
+      categories: formattedData.map((item) => item.monthYear),
+    },
+    tooltip: {
+      y: {
+        formatter: (val) => `₹ ${val.toFixed(0)}`,  // 👈 No decimal
+      },
+    },
+    yaxis: {
+      labels: {
+        formatter: (val) => `₹ ${val.toFixed(0)}`,  // 👈 No decimal
+      },
+    },
+  },
+  series: [
+    {
+      name: "Earnings",
+      data: formattedData.map((item) => item.total),
+    },
+  ],
+}));
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
