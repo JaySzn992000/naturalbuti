@@ -8,44 +8,55 @@ const [labels, setLabels] = useState([]);
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
-      const data = await response.json();
+const fetchData = async () => {
 
-      if (!data.products || !Array.isArray(data.products)) {
-        throw new Error("Invalid data format");
-      }
+try {
+const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
+const data = await response.json();
 
-      const monthlyEarnings = {};
-      data.products.forEach(item => {
-        const dateObj = new Date(item.date);
-        const month = dateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
-        monthlyEarnings[month] = (monthlyEarnings[month] || 0) + (item.amount || 0);
-      });
+if (!data.products || !Array.isArray(data.products)) {
+throw new Error("Invalid data format");
+}
 
-      const sortedMonths = Object.keys(monthlyEarnings).sort((a, b) => {
-        return new Date(a) - new Date(b);
-      });
+// Group earnings 
+// by month
 
-      const calculatedSeries = sortedMonths.map(month => monthlyEarnings[month]);
-      const calculatedLabels = sortedMonths.map(month => {
-        const earnings = monthlyEarnings[month];
-        return `${month} (₹${earnings.toLocaleString()})`;
-      });
+const monthlyEarnings = {};
+data.products.forEach(item => {
+const dateObj = new Date(item.date);
+const month = dateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
+monthlyEarnings[month] = (monthlyEarnings[month] || 0) + (item.amount || 0);
+});
 
-      setSeries(calculatedSeries);
-      setLabels(sortedMonths);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
+// Sort months 
+// chronologically
 
-  fetchData();
-}, []);
+const sortedMonths = Object.keys(monthlyEarnings).sort((a, b) => {
+return new Date(a) - new Date(b);
+});
 
+
+// Prepare data 
+// for the chart
+
+const calculatedSeries = sortedMonths.map(month => monthlyEarnings[month]);
+const calculatedLabels = sortedMonths.map(month => {
+const earnings = monthlyEarnings[month];
+return `${month} (₹${earnings.toLocaleString()})`;
+});
+
+setSeries(calculatedSeries);
+setLabels(sortedMonths); 
+setLoading(false);
+} catch (error) {
+console.error("Error fetching data:", error);
+setLoading(false);
+}
+};
+
+fetchData();
+
+}, [] );
 
 
 const options = {
