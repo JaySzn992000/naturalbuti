@@ -2,122 +2,100 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const LineChart = () => {
+  const [chartData, setChartData] = useState({
+    options: {
+      chart: {
+        id: "monthly-earnings-line",
+        toolbar: { show: false },
+      },
+      xaxis: {
+        categories: [],
+        labels: { rotate: -45 },
+      },
+      stroke: {
+        curve: "smooth",
+        width: 2,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      colors: ["#00BFFF"],
+      tooltip: {
+        y: {
+          formatter: (val) => `₹ ${val.toFixed(2)}`,  // ✅ formatted here
+        },
+      },
+      yaxis: {
+        labels: {
+          formatter: (val) => `₹ ${val.toFixed(2)}`,  // ✅ formatted here
+        },
+      },
+    },
+    series: [
+      {
+        name: "Earnings",
+        data: [],
+      },
+    ],
+  });
 
-const [chartData, setChartData] = useState({
+  useEffect(() => {
+    const customerFetch = async () => {
+      try {
+        const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
+        const data = await response.json();
 
-options: {
+        const earningsByMonth = data.products.reduce((acc, item) => {
+          const dateObj = new Date(item.date);
+          const month = dateObj.toLocaleString("default", { month: "short" });
+          const year = dateObj.getFullYear();
+          const monthYear = `${month} ${year}`;
+          acc[monthYear] = (acc[monthYear] || 0) + (item.amount || 0);
+          return acc;
+        }, {});
 
-chart: {
-id: "monthly-earnings-line",
-toolbar: { show: false },
-},
-xaxis: {
-categories: [],
-labels: { rotate: -45 },
-},
-stroke: {
-curve: "smooth",
-width: 2,
-},
-dataLabels: {
-enabled: false,
-},
-colors: ["#00BFFF"],
-},
-series: [
-{
-name: "Earnings",
-data: [],
-},
-],
+        const formattedData = Object.entries(earningsByMonth).map(([monthYear, total]) => ({
+          monthYear,
+          total: Number(total.toFixed(2)),  // ✅ round here
+        }));
 
-} ) ;
+        setChartData((prevState) => ({
+          ...prevState,
+          options: {
+            ...prevState.options,
+            xaxis: {
+              ...prevState.options.xaxis,
+              categories: formattedData.map((item) => item.monthYear),
+            },
+          },
+          series: [
+            {
+              name: "Earnings",
+              data: formattedData.map((item) => item.total),
+            },
+          ],
+        }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-useEffect(() => {
-const customerFetch = async () => {
-try {
-const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
-const data = await response.json();
+    customerFetch();
+  }, []);
 
-// Month-wise 
-// earnings calculate 
-
-const earningsByMonth = data.products.reduce((acc, item) => {
-
-const dateObj = new Date(item.date);
-const month = dateObj.toLocaleString("default", { month: "short" });
-const year = dateObj.getFullYear();
-const monthYear = `${month} ${year}`; 
-acc[monthYear] = (acc[monthYear] || 0) + (item.amount || 0);
-return acc;
-
-}, {} ) ;
-
-const formattedData = Object.entries(earningsByMonth).map(([monthYear, total]) => ({
-monthYear,
-total,
-
-}));
-
-setChartData((prevState) => ({
-...prevState,
-options: {
-...prevState.options,
-xaxis: {
-...prevState.options.xaxis,
-categories: formattedData.map((item) => item.monthYear),
-},
-tooltip: {
-y: {
-formatter: (val) => `₹ ${val}`,
-},
-},
-yaxis: {
-labels: {
-formatter: (val) => `₹ ${val}`,
-},
-},
-},
-series: [
-{
-name: "Earnings",
-data: formattedData.map((item) => item.total),
-},
-],
-}));
-  
-} catch (error) {
-console.error("Error fetching data:", error);
-}
-};
-
-customerFetch();
-
-}, [] );
-
-
-return (
-
-<div>
-
-<div className="linechart-container">
-
-<h3 className="ChartsTg" >Monthly Earnings by LineChart</h3>
-<label>Sales/Revenue</label>
-
-<ReactApexChart
-options={chartData.options}
-series={chartData.series}
-type="line"
-height={350}
-className='PieChart'
-/>
-</div>
-
-</div>
-
-);
-
+  return (
+    <div className="linechart-container">
+      <h3 className="ChartsTg">Monthly Earnings by LineChart</h3>
+      <label>Sales/Revenue</label>
+      <ReactApexChart
+        options={chartData.options}
+        series={chartData.series}
+        type="line"
+        height={350}
+        className="PieChart"
+      />
+    </div>
+  );
 };
 
 export default LineChart;
