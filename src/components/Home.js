@@ -136,7 +136,7 @@ className="seeLLProducts">View All</button>
 <Contactus></Contactus>
 
 <a
-href='https://web.whatsapp.com/'>
+href='https://api.whatsapp.com/send/?phone=%2B919821187225&text&type=phone_number&app_absent=0'>
 <img
 className="whatsapp_message"
 src="https://cdn-icons-png.freepik.com/256/3983/3983877.png?semt=ais_hybrid"
