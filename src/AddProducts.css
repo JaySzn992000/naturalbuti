@@ -61,6 +61,8 @@ color: #333;
 
 .dashboard-container .container_upload span {
 color: #FF4500;
+font-size: 1.1rem;
+line-height: 2.2em;
 }
 
 .dashboard-container h4 {
