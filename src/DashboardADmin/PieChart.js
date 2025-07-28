@@ -29,18 +29,20 @@ const PieChart = () => {
         const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
         const data = await response.json();
 
-        // Group by Month-Year and total amount
         const earningsByMonth = data.products.reduce((acc, item) => {
           const dateObj = new Date(item.date);
           const month = dateObj.toLocaleString('default', { month: 'short' });
           const year = dateObj.getFullYear();
           const monthYear = `${month} ${year}`;
-          acc[monthYear] = (acc[monthYear] || 0) + (item.amount || 0);
+          acc[monthYear] = (acc[monthYear] || 0) + (Number(item.amount) || 0);
           return acc;
         }, {});
 
         const monthLabels = Object.keys(earningsByMonth);
         const monthTotals = Object.values(earningsByMonth);
+
+        console.log("Labels:", monthLabels);
+        console.log("Series:", monthTotals);
 
         setChartData((prev) => ({
           ...prev,
@@ -59,10 +61,10 @@ const PieChart = () => {
   }, []);
 
   return (
-    <div>
-      <div className="chart-container">
-        <h3 className="ChartsTg">Monthly Earnings by PieChart</h3>
-        <label>Sales/Revenue</label>
+    <div className="chart-container">
+      <h3 className="ChartsTg">Monthly Earnings by PieChart</h3>
+      <label>Sales/Revenue</label>
+      {chartData.series.length > 0 ? (
         <ReactApexChart
           options={chartData.options}
           series={chartData.series}
@@ -70,7 +72,9 @@ const PieChart = () => {
           className="PieChart"
           height={300}
         />
-      </div>
+      ) : (
+        <p>Loading chart...</p>
+      )}
     </div>
   );
 };
