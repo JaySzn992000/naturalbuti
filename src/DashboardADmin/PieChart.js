@@ -62,7 +62,7 @@ const PieChart = () => {
   }, []);
 
   return (
-    <div className="chart-container">
+    <div className="PieChart-container">
       <h3 className="ChartsTg">Monthly Earnings by PieChart</h3>
       <label>Sales/Revenue</label>
       {chartData.series.length > 0 ? (
