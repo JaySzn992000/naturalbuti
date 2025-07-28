@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const PieChart = () => {
+  
   const [chartData, setChartData] = useState({
     series: [],
     options: {
@@ -70,7 +71,7 @@ const PieChart = () => {
           series={chartData.series}
           type="pie"
           className="PieChart"
-          height={300}
+          height={350}
         />
       ) : (
         <p>Loading chart...</p>
