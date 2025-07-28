@@ -6,41 +6,48 @@ const BarChart = () => {
 const [chartData, setChartData] = useState({
 
 options: {
-chart: {
-id: "monthly-earnings",
-toolbar: { show: false },
-},
-xaxis: {
-categories: [],
-labels: { rotate: -45 },
-},
-plotOptions: {
-bar: {
-horizontal: false,
-columnWidth: '55%',
-borderRadius: 5,
-borderRadiusApplication: 'end',
-},
-},
-dataLabels: {
-enabled: false,
-},
-stroke: {
-show: true,
-width: 2,
-colors: ['transparent'],
-},
-fill: {
-opacity: 1,
-},
-tooltip: {
-y: {
-formatter: function (val) {
-return "₹ " + val + "";
-},
-},
-},
-colors: ["#00BFFF"],
+  chart: {
+    id: "monthly-earnings",
+    toolbar: { show: false },
+  },
+  xaxis: {
+    categories: [],
+    labels: { rotate: -45 },
+  },
+  yaxis: {
+    labels: {
+      formatter: function (val) {
+        return "₹ " + val.toFixed(0);
+      }
+    }
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: '55%',
+      borderRadius: 5,
+      borderRadiusApplication: 'end',
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ['transparent'],
+  },
+  fill: {
+    opacity: 1,
+  },
+  tooltip: {
+    y: {
+      formatter: function (val) {
+        return "₹ " + val.toFixed(0);
+      },
+    },
+  },
+  colors: ["#00BFFF"],
 },
 series: [
 {
