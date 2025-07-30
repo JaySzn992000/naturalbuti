@@ -47,7 +47,6 @@ alert("Password must be at least 6 characters.");
 return;
 }
 
-
 try {
 
 // https://naturalbuti.onrender.com/fetchAdmin

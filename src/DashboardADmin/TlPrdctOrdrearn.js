@@ -24,7 +24,7 @@ useEffect(() => {
 const DbFetch = async () => {
 try {
 // http://localhost:3001    
-const response = await fetch("https://nitiaryapickle.onrender.com/fetchDB");
+const response = await fetch("https://naturalbuti.onrender.com/fetchDB");
 const data = await response.json();
 setStoreDB(data.products);
 setTotalProducts(data.total);
@@ -41,12 +41,12 @@ DbFetch();
 useEffect(() => {
 const customerFetch = async () => {
 try {
-const response = await fetch("https://nitiaryapickle.onrender.com/fetchCutomerOrder");
+const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 setCustomerOrder(data.products);
 setTotalcustProducts(data.total);
 const amount = data.products.reduce(
-(acc, item) => acc + (item.amount || 0),
+(acc, item) => acc + Number(item.amount || 0),
 0
 );
 setTotalAmount(amount);
@@ -62,7 +62,7 @@ customerFetch();
 useEffect(() => {
 const fetchTotalUsers = async () => {
 try {
-const response = await fetch("https://nitiaryapickle.onrender.com/usertotalnofo");
+const response = await fetch("https://naturalbuti.onrender.com/usertotalnofo");
 const data = await response.json();
 setTotalUsers(data.total);
 } catch (error) {
@@ -104,7 +104,7 @@ const [selectedDate, setSelectedDate] = useState("");
 const handleFilterSubmit = async () => {
 
 try {
-const response = await fetch("https://nitiaryapickle.onrender.com/fetchCutomerOrder", {
+const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ date: selectedDate }),
@@ -196,7 +196,8 @@ Dashcontainer ? "DashContainer-inside" : ""
 <img src={OrdersDashEarn} loading="lazy" alt="Orders Dashboard" />
 <div>
 <h4>Total Earning:</h4>
-<h2> ₹ {''} {totalAmount}</h2>
+<h2> ₹ {''} {totalAmount}
+</h2>
 </div>
 </div>
 
@@ -258,4 +259,3 @@ ChartContainer ? "ChartContainer-inside" : ""
 }
 
 export default TlPrdctOrdrearn;
-

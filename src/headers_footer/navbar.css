@@ -6,8 +6,8 @@ for navBar ..  */
 
 .navProfile_img{
 color: rgb(255, 255, 255);
-font-size: 1.1rem;
 cursor: pointer;
+width: 27px;
 }
 
 
@@ -28,8 +28,8 @@ height: auto;
 padding: 3px 57px 3px 57px;
 z-index: 99999;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.052);
-background-color: #100424;
 transition: 0.3s;
+background-color: rgb(255, 255, 255);
 }
 
 
@@ -50,7 +50,7 @@ margin-left: 1.7em;
 .div_ul .fa-angle-down {
 margin-top: 0.1em;
 font-size: 1.5rem;
-color: rgb(255, 255, 255);
+color:#903c34;
 }
 
 
@@ -77,22 +77,12 @@ cursor: pointer;
 }
 
 
-.Product_navbar .flex_nav_ProfileSection img {
-width: 27px;
-cursor: pointer;
-filter: invert(1);
-border-radius: 3px;
-padding: 3px;
-}
-
-
 .Product_navbar .nav_profileSection li a {
 color: rgb(255, 255, 255);
 }
 
 
 .Product_navbar .fa-heart {
-font-size: 1.2rem;
 margin-right: 0.9em;
 cursor: pointer;
 }
@@ -115,13 +105,13 @@ font-size: 0.8rem;
 
 
 .Product_navbar .div_ul li a {
-color: rgb(255, 255, 255);
-font-size: 0.8rem;
+color: #903c34;
+font-size: 0.9rem;
 }
 
 
 .Product_navbar .logo_img {
-width: 104px;
+width: 157px;
 height: auto;   
 z-index: 999;
 margin-bottom: .5em;
@@ -161,11 +151,13 @@ align-items: center;
 gap: 0.4em;
 }
 
+
 .fa-shopping-cart {
 margin-right: 0.3em;
 margin-left: 0.4em;
-font-size: 1.3rem;
+width: 34px;
 }
+
 
 .flex_nav_ProfileSection .nav_profileSection {
 display: flex;
@@ -174,19 +166,20 @@ gap: 0.7em;
 }
 
 .flex_nav_ProfileSection .nav_profileSection li a {
-font-size: 0.8rem;
+font-size: 0.9rem;
+color:#903c34;
 }
 
 /* ... This is For
  Search Bar..  */
 
 .navProfile_ {
-margin-right: 1.1em;
+margin-right: 1.2em;
 }
 
 .navProfile_ a {
-color: rgb(255, 255, 255);
-font-size: 0.8rem;
+color: #903c34;
+font-size: 0.9rem;
 }
 
 
@@ -357,7 +350,8 @@ border-bottom: 1px solid rgba(117, 50, 50, 0.192);
 
 
 .Product_navbar .hover_products .listing_Products li a {
-color: #808080;
+color: #903c34;
+font-size: .9rem;
 }
 
 .Product_navbar .hover_products .listing_Products li a:hover {

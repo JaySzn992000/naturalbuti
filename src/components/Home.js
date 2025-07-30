@@ -5,7 +5,6 @@ import Header from "../headers_footer/header";
 import BottomFavcomp from "../componentsBoot/bottomFavcomp";
 import SlidCakeImg from "../Slider/CakeSlide.jpg";
 import Contactus from "./Contactus";
-import HmComponent from "./HmComponent";
 import Slider from "../slider";
 import { Helmet } from "react-helmet";
 import emailjs from "emailjs-com";
@@ -103,6 +102,7 @@ content="Pickles, Homemade Achaar, Mango Pickle, Buy Pickles Online, Indian Pick
 </Helmet>
 
 <Topnav></Topnav>
+
 <Navbar />
 
 <Slider />
@@ -111,10 +111,8 @@ content="Pickles, Homemade Achaar, Mango Pickle, Buy Pickles Online, Indian Pick
 <Pickles showFilters={showFilters} limit={10}></Pickles>
 </div>
 
-
 {/*  */}
 
-<HmComponent></HmComponent>
 
 {/*  */}
 
@@ -138,7 +136,10 @@ className="seeLLProducts">View All</button>
 <Contactus></Contactus>
 
 <a
-href='https://api.whatsapp.com/send/?phone=919661199811&text&type=phone_number&app_absent=0'>
+href='https://api.whatsapp.com/send/?phone=%2B919821187225&text&type=phone_number&app_absent=0'
+target="_blank"
+rel="noopener noreferrer"
+>
 <img
 className="whatsapp_message"
 src="https://cdn-icons-png.freepik.com/256/3983/3983877.png?semt=ais_hybrid"
@@ -184,6 +185,10 @@ className="DlvyImg"
 
 </form>
 
+</div>
+
+<div className="tshirt_Left">
+<Pickles showFilters={showFilters} limit={10}></Pickles>
 </div>
 
 <Header />

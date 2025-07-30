@@ -2,8 +2,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import NavigationClose from "../Logo/CloseTag.png";
-import LogoNitiArya from "../Logo/LogoNitiArya.png";
+import LogoNitiArya from "../Logo/LogoNitiArya.jpg";
 import { Helmet } from "react-helmet";
+import Cart_Icon from "../Images_ToolsSymbols/Cart_Icon.jpg"
+import Heart_Icon from "../Images_ToolsSymbols/Heart_Icon.jpg"
+import User_Icon from "../Images_ToolsSymbols/User_Icon.jpg"
 import "./navbar.css";
 
 const Navbar = () => {
@@ -166,7 +169,6 @@ const naviToAboutus = () => {
 naviAbout('/Aboutus')
 }
 
-
 const NavitoProductlist = useNavigate()
 
 const naviToCollection = () => {
@@ -319,6 +321,7 @@ alt=""
 <div className="div_ul">
 
 <li className="hover_products">
+
 <a onClick={naviToCollection}  href="">Categories</a>
 
 <div className="listing_Products">
@@ -391,17 +394,23 @@ alt=""
 
 <ul className="nav_profileSection">
 
-<i
+<img 
 onClick={heartNavi}
-className="navProfile_img fa fa-heart"></i>
+className="navProfile_img fa fa-heart"
+src={Heart_Icon}
+></img>
 
 {wishlistCount > 0 && (
 <span className="wishlist-count">{wishlistCount}</span>
 )}
 
-<i
+
+<img 
 onClick={naviRegist}
-className="navProfile_img user_right fa fa-user"></i>
+className="navProfile_img user_right fa fa-user"
+src={User_Icon}
+></img>
+
 
 <ul>
 <li onClick={naviRegist}>
@@ -411,9 +420,15 @@ className="navProfile_img user_right fa fa-user"></i>
 
 </ul>
 
-<i 
+
+<img
+src={Cart_Icon}
 onClick={navigateEcart}
-className="fa fa-shopping-cart navProfile_img"></i>
+className="fa fa-shopping-cart navProfile_img"
+></img>
+
+
+
 
 {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
 

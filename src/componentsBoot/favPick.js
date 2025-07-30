@@ -4,6 +4,7 @@ import "./favPick.css";
 const FavPick = () => {
 
 return (
+
 <div>
 <div className="unique_gf">
 {/*  */}

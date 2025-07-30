@@ -123,7 +123,7 @@ setIsProcessing(true); // 🟢 Immediately
 // show "Processing..."
 
 try {
-const response = await axios.post("https://nitiaryapickle.onrender.com/create-order", {
+const response = await axios.post("https://naturalbuti.onrender.com/create-order", {
 amount: totalAmount,
 });
 
@@ -144,7 +144,7 @@ return;
 
 
 const paymentVerificationResponse = await axios.post(
-"https://nitiaryapickle.onrender.com/verify-payment",
+"https://naturalbuti.onrender.com/verify-payment",
 response
 );
 
@@ -174,7 +174,7 @@ payment_status: "Sucessfull",
 
 
 await axios.post(
-"https://nitiaryapickle.onrender.com/addcartaddress",
+"https://naturalbuti.onrender.com/addcartaddress",
 dataToSend
 );
 resetForm();

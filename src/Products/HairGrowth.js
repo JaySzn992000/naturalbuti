@@ -18,7 +18,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("https://nitiaryapickle.onrender.com/fetchProductslistSweatshirt")
+.get("https://naturalbuti.onrender.com/fetchProductslistSweatshirt")
 .then((response) => {
 console.log("Fetched Bitter Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -36,7 +36,7 @@ console.error("Error fetching Bitter Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("https://nitiaryapickle.onrender.com/fetchProductslist", {
+.get("https://naturalbuti.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
