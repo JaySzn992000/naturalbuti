@@ -15,7 +15,7 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-    'https://json-softech-z6gu.vercel.app',
+    'https://naturalbuti-jb4y.vercel.app',
     'https://namasyaa.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -46,10 +46,7 @@ app.get("/ping", (req, res) => {
   res.status(200).send("Server is alive!");
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 514ca1f599991e4482dc8d2b02be062a5e799e72
 const axios = require("axios");
 
 
@@ -1241,46 +1238,43 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 //
 
 
-
 app.post("/resetAdminPassword", async (req, res) => {
-  const { adminuser, newPassword } = req.body;
+const { adminuser, newPassword } = req.body;
 
-  if (!adminuser || !newPassword) {
-    return res.status(400).json({
-      success: false,
-      message: "Username and new password are required",
-    });
-  }
+if (!adminuser || !newPassword) {
+return res.status(400).json({
+success: false,
+message: "Username and new password are required",
+});
+}
 
-  // SQL query to check if the user exists
-  const checkUserQuery = "SELECT * FROM _admindashboard WHERE adminuser = $1";
-  const updatePasswordQuery =
-    "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2";
+const checkUserQuery = "SELECT * FROM _admindashboard WHERE _adminuser = $1";
+const updatePasswordQuery =
+"UPDATE _admindashboard SET _adminpass = $1 WHERE _adminuser = $2";
 
-  try {
-    const result = await pool.query(checkUserQuery, [adminuser]);
+try {
+const result = await pool.query(checkUserQuery, [adminuser]);
 
-    if (result.rows.length === 0) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found!" });
-    }
+if (result.rows.length === 0) {
+return res
+.status(404)
+.json({ success: false, message: "User not found!" });
+}
 
-    // Update the password
-    await pool.query(updatePasswordQuery, [newPassword, adminuser]);
+await pool.query(updatePasswordQuery, [newPassword, adminuser]);
 
-    console.log("Password updated successfully!");
-    return res
-      .status(200)
-      .json({ success: true, message: "Password updated successfully!" });
-  } catch (err) {
-    console.log("Error:", err.message);
-    return res.status(500).json({
-      success: false,
-      message: "Error updating password",
-      error: err.message,
-    });
-  }
+console.log("Password updated successfully!");
+return res
+.status(200)
+.json({ success: true, message: "Password updated successfully!" });
+} catch (err) {
+console.error("Error:", err.message);
+return res.status(500).json({
+success: false,
+message: "Error occurred while processing your request",
+error: err.message,
+});
+}
 });
 
 
@@ -1326,43 +1320,43 @@ app.post("/resetAdminPassword", async (req, res) => {
 
 
 app.post("/updateAdminSimple", async (req, res) => {
-  const { olduser, adminuser, adminpass } = req.body;
+const { olduser, adminuser, adminpass } = req.body;
 
-  if (!olduser || !adminuser || !adminpass) {
-    return res
-      .status(400)
-      .json({ success: false, message: "All fields are required." });
-  }
+if (!olduser || !adminuser || !adminpass) {
+return res
+.status(400)
+.json({ success: false, message: "All fields are required." });
+}
 
-  const updateQuery = `
-    UPDATE _admindashboard
-    SET adminuser = $1, adminpass = $2
-    WHERE adminuser = $3
-  `;
+const updateQuery = `
+UPDATE _admindashboard
+SET _adminuser = $1, _adminpass = $2
+WHERE _adminuser = $3
+`;
 
-  try {
-    const result = await pool.query(updateQuery, [adminuser, adminpass, olduser]);
+try {
+const result = await pool.query(updateQuery, [adminuser, adminpass, olduser]);
 
-    if (result.rowCount === 0) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Admin not found." });
-    }
+if (result.rowCount === 0) {
+return res
+.status(404)
+.json({ success: false, message: "Admin not found." });
+}
 
-    return res
-      .status(200)
-      .json({ success: true, message: "Admin updated successfully." });
-  } catch (err) {
-    console.error("Update error:", err.message);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        message: "Server error while updating admin.",
-      });
-  }
+return res
+.status(200)
+.json({ success: true, message: "Admin updated successfully." });
+} catch (err) {
+console.error("Update error:", err.message);
+return res
+.status(500)
+.json({
+success: false,
+message: "Server error while updating admin.",
+error: err.message,
 });
-
+}
+});
 
 // Admin
 //  Registeration ...
@@ -1489,33 +1483,14 @@ error: err.message,
 
 app.post('/registerAdmin', async (req, res) => {
   const { adminuser, adminpass } = req.body;
-  console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
-
-  if (!adminuser || !adminpass) {
-    return res.status(400).json({
-      success: false,
-      message: "Username and password are required"
-    });
-  }
+    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
 
   try {
-    // 🔍 Same variable name: checkAdminQuery
-    const checkAdminQuery = `SELECT * FROM _admindashboard WHERE adminuser = $1`;
-    const result = await pool.query(checkAdminQuery, [adminuser]);
-
-    if (result.rows.length > 0) {
-      return res.status(409).json({
-        success: false,
-        message: "Admin username already exists!"
-      });
-    }
-
-    // 💾 Insert with same variable name
-    const insertAdminQuery = `
-      INSERT INTO _admindashboard (adminuser, adminpass)
-      VALUES ($1, $2)
-    `;
-    await pool.query(insertAdminQuery, [adminuser, adminpass]);
+  const insertAdminQuery = `
+  INSERT INTO _admindashboard (adminuser, adminpass)
+  VALUES ($1, $2)
+  `;
+  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
 
     return res.status(200).json({
       success: true,
@@ -1528,6 +1503,7 @@ app.post('/registerAdmin', async (req, res) => {
       message: "Server error while registering admin"
     });
   }
+  
 });
 
 
@@ -1609,7 +1585,7 @@ try {
 const client = await pool.connect();
 
 const insertQuery = `
-INSERT INTO _custorder (
+INSERT INTO custorder (
 name, mob, email, id, productname, price, quantity,
 gender, add_name, country, pincode, address, state,
 mobilenumber, alternativenumber, emailid,
@@ -1723,10 +1699,7 @@ console.log(`Server is running PORT on ${PORT}`);
 });
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 514ca1f599991e4482dc8d2b02be062a5e799e72
 setInterval(() => {
   axios
     .get("https://naturalbuti.onrender.com/ping")
@@ -1751,10 +1724,13 @@ setInterval(() => {
 // Razorpay
 // configuration
 
+// rzp_live_Zm7uF61IDcY0t9
+// FgZimfWqOEOLs4ejcIZHO7yc
+
 
 const razorpayInstance = new Razorpay({
-key_id: "rzp_live_Kh5Fut1EpwDwF5", //  Razorpay key_id
-key_secret: "zV2WqzWm6CTf3qH5i0xnO1La", // Razorpay key_secret
+key_id: "rzp_live_Zm7uF61IDcY0t9", //  Razorpay key_id
+key_secret: "FgZimfWqOEOLs4ejcIZHO7yc", // Razorpay key_secret
 });
 
 app.post("/create-order", async (req, res) => {
@@ -2265,31 +2241,31 @@ res.status(500).json({ error: "DB error", details: err.message });
 // });
 
 
+app.post("/updateOrderStatus", (req, res) => {
 
-app.post("/updateOrderStatus", async (req, res) => {
-  const { razorpay_order_id } = req.body;
+const { razorpay_order_id } = req.body;
 
-  if (!razorpay_order_id) {
-    return res.status(400).json({ success: false, message: "Missing order ID" });
-  }
+const updateQuery = `
+UPDATE _custorder 
+SET status_order = 'Order Delivered' 
+WHERE razorpay_order_id = ?
+`;
 
-  try {
-    const result = await pool.query(
-      `UPDATE _custorder SET status_order = 'Order Delivered' WHERE razorpay_order_id = $1`,
-      [razorpay_order_id]
-    );
 
-    if (result.rowCount === 0) {
-      return res.status(404).json({ success: false, message: "Order not found" });
-    }
+db.query(updateQuery, [razorpay_order_id], (err, result) => {
+if (err) {
+console.log("Update error:", err);
+return res.status(500).json({ success: false, message: "DB error" });
+}
 
-    res.status(200).json({ success: true, message: "Order status updated" });
-  } catch (err) {
-    console.error("Update error:", err.message);
-    res.status(500).json({ success: false, message: "Database error" });
-  }
+if (result.affectedRows === 0) {
+return res.status(404).json({ success: false, message: "Order not found" });
+}
+
+res.status(200).json({ success: true, message: "Order status updated" });
+
 });
-
+});
 
 
 // app.get("/usertotalnofo", (req, res) => {
