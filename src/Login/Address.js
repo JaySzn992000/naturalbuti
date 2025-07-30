@@ -14,7 +14,7 @@ const [loggedInUser, setLoggedInUser] = useState(null);
 const [cartProducts, setCartProducts] = useState([]);
 const [formData, setFormData] = useState({
 gender: "Mr.",
-addressname: "",
+add_name: "",
 country: "",
 pincode: "",
 address: "",
@@ -27,7 +27,7 @@ emailid: ""
 const resetForm = () => {
 setFormData({
 gender: "Mr.",
-addressname: "",
+add_name: "",
 country: "",
 pincode: "",
 address: "",
@@ -65,7 +65,7 @@ setFormData({
 
 const validateForm = () => {
 
-const alphaOnly = formData.addressname.replace(/[^a-zA-Z]/g, '');
+const alphaOnly = formData.add_name.replace(/[^a-zA-Z]/g, '');
 if (alphaOnly.length < 3) {
 alert("Name must be at least 3 characters long.");
 return false;
@@ -130,7 +130,7 @@ amount: totalAmount,
 const { id: orderId } = response.data;
 
 const options = {
-key: "rzp_live_Zm7uF61IDcY0t9",
+key: "rzp_live_Kh5Fut1EpwDwF5",
 amount: totalAmount * 100,
 currency: "INR",
 name: "Secure Payment",
@@ -172,6 +172,7 @@ payment_status: "Sucessfull",
 },
 };
 
+console.log("🚀 dataToSend to backend:", JSON.stringify(dataToSend, null, 2));
 
 await axios.post(
 "https://naturalbuti.onrender.com/addcartaddress",
@@ -244,8 +245,8 @@ required
 className="inputAddress"
 type="text"
 placeholder="Name"
-name="addressname"
-value={formData.addressname}
+name="add_name"
+value={formData.add_name}
 onChange={handleChange}
 required
 />

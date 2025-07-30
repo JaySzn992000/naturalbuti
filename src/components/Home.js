@@ -187,10 +187,6 @@ className="DlvyImg"
 
 </div>
 
-<div className="tshirt_Left">
-<Pickles showFilters={showFilters} limit={10}></Pickles>
-</div>
-
 <Header />
 
 </div>

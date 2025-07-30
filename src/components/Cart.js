@@ -78,7 +78,7 @@ quantities,
 
 const getProductImagePath = (productId) => {
 const product = productData.find((p) => p.id === productId);
-return product ? `http://localhost:3001${product.file_path}` : "";
+return product ? `https://naturalbuti.onrender.com${product.file_path}` : "";
 };
 
 

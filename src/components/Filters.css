@@ -144,19 +144,6 @@ border-radius: 11%;
 cursor: pointer;
 }
 
-/* .filters input[type="range"]::-moz-range-thumb {
-width: 20px;
-height: 20px;
-background: #ff1493;
-border-radius: 50%;
-cursor: pointer;
-} */
-
-
-.filters input[type="range"]:focus {
-background: #ccc;
-}
-
 
 .filter_ {
 position: absolute;
