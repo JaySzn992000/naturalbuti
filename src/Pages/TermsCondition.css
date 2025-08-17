@@ -20,8 +20,8 @@ color: #10204f;
 margin-bottom: -0.7em;
 }
 
-.TermsCondition_flx h2 {
-font-size: 1rem;
+.TermsCondition_flx .user_elig_h2 {
+font-size: .9rem;
 margin-top: 1em;
 }
 
@@ -65,6 +65,12 @@ margin-bottom: 1.3em;
 .TermsCondition_tw #accTrm {
 margin-top: -1.7em;
 }
+
+
+.TermsCondition_tw #hFourTag{
+    font-size: .9rem;
+}
+
 
 
 

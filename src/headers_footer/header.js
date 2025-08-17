@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import LogoNitiArya from "../Logo/LogoNitiArya.jpg";
+import LogoNitiArya from "../Logo/LogoNitiArya.png";
 import headerdelivery from "../Slider/header4.img.jpg";
 import headersupport from "../Slider/header2.img.jpg";
 import headerfreeshipping from "../Slider/header1.img.jpg";

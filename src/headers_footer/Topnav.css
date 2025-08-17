@@ -3,7 +3,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 10px 2vw;
-background-color: #f8dccc;
+background-color: #d8ac64;
 font-size: 0.95rem;
 color: rgb(255, 255, 255);
 flex-wrap: wrap;
@@ -15,11 +15,12 @@ margin: 0;
 font-weight: 500;
 }
 
+
 .topnav-center a,
 .topnav-right a {
 margin: 0 10px;
 text-decoration: none;
-color: #903c34;
+color: rgb(255, 255, 255);
 font-weight: 500;
 transition: color 0.3s ease;
 cursor: pointer;

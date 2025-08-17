@@ -1,5 +1,5 @@
 import React from "react";
-import midimg1 from "../Slider/mid_img2.jpeg";
+import midimg1 from "../Slider/mid_img.jpg";
 import "./bottomFavcomp.css";
 
 const BottomFavcomp = () => {

@@ -9,6 +9,11 @@ return (
 <p>Free Shipping Over ₹700</p>
 </div>
 
+<div className="topnav-center">
+<a>Newsletter</a>
+<a>Contact Us</a>
+<a>FAQs</a>
+</div>
 
 <div className="topnav-right">
 <a  rel="noreferrer"><FaWhatsapp /></a>

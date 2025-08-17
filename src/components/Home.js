@@ -102,7 +102,6 @@ content="Pickles, Homemade Achaar, Mango Pickle, Buy Pickles Online, Indian Pick
 </Helmet>
 
 <Topnav></Topnav>
-
 <Navbar />
 
 <Slider />

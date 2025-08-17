@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import NavigationClose from "../Logo/CloseTag.png";
-import LogoNitiArya from "../Logo/LogoNitiArya.jpg";
+import LogoNitiArya from "../Logo/LogoNitiArya.png";
 import Heart from "../Images_ToolsSymbols/Heart.jpg";
 import Cart from "../Images_ToolsSymbols/Cart.jpg";
 import { Helmet } from "react-helmet";
@@ -25,6 +25,7 @@ if (storedUser) {
 setLoggedInUser(JSON.parse(storedUser));
 }
 }, []);
+
 
 // .. It's Saves LoggedIn 
 // User Details in
