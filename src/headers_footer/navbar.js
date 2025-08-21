@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import NavigationClose from "../Logo/CloseTag.png";
 import LogoNitiArya from "../Logo/LogoNitiArya.png";
+
 import Heart from "../Images_ToolsSymbols/Heart.jpg";
 import Cart from "../Images_ToolsSymbols/Cart.jpg";
+
 import { Helmet } from "react-helmet";
 import "./navbar.css";
 
@@ -25,7 +27,6 @@ if (storedUser) {
 setLoggedInUser(JSON.parse(storedUser));
 }
 }, []);
-
 
 // .. It's Saves LoggedIn 
 // User Details in
@@ -391,25 +392,27 @@ alt=""
 
 <ul className="nav_profileSection">
 
-
-<ul>
-<li onClick={naviRegist}>
-<a href="">MY ACCOUNT</a>
-</li>
-</ul>
-
-<img 
+<img
 onClick={heartNavi}
-src={Heart}
+className="navProfile_img fa fa-heart"
 loading="lazy"
 alt=""
-className="navProfile_img fa fa-heart"
+src={Heart}
 ></img>
 
 {wishlistCount > 0 && (
 <span className="wishlist-count">{wishlistCount}</span>
 )}
 
+{/* <i
+onClick={naviRegist}
+className="navProfile_img user_right fa fa-user"></i> */}
+
+<ul>
+<li onClick={naviRegist}>
+<a href="">MY ACCOUNT</a>
+</li>
+</ul>
 
 </ul>
 
@@ -421,6 +424,7 @@ onClick={navigateEcart}
 src={Cart}
 className="fa fa-shopping-cart navProfile_img"
 ></img>
+
 
 {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
 
@@ -473,7 +477,7 @@ loading="lazy"
 />
 
 <li onClick={navitoAccount} style={{ marginLeft: "-.5em" }}>
-<a href="">MY ACCOUNT</a>
+<a href="">My Account</a>
 </li>
 </div>
 </div>
