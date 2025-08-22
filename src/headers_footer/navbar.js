@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import NavigationClose from "../Logo/CloseTag.png";
 import LogoNitiArya from "../Logo/LogoNitiArya.png";
-
 import Heart from "../Images_ToolsSymbols/Heart.jpg";
+import User from "../Images_ToolsSymbols/user.png";
 import Cart from "../Images_ToolsSymbols/Cart.jpg";
-
 import { Helmet } from "react-helmet";
 import "./navbar.css";
 
@@ -237,6 +236,7 @@ window.removeEventListener("scroll", handleScroll);
 };
 }, [] );
 
+
 const [afterSearch_prodct, setafterSearch_prodct] = useState(false);
 const searchProducts = () => {
 setafterSearch_prodct((prevState) => !prevState);
@@ -392,45 +392,43 @@ alt=""
 
 <ul className="nav_profileSection">
 
+
 <img
+src={Heart}
 onClick={heartNavi}
 className="navProfile_img fa fa-heart"
-loading="lazy"
-alt=""
-src={Heart}
 ></img>
 
 {wishlistCount > 0 && (
 <span className="wishlist-count">{wishlistCount}</span>
 )}
 
-{/* <i
+
+<img
 onClick={naviRegist}
-className="navProfile_img user_right fa fa-user"></i> */}
+className="navProfile_img user_right fa fa-user"
+src={User}
+></img>
 
 <ul>
 <li onClick={naviRegist}>
-<a href="">MY ACCOUNT</a>
+<a href="">My Account</a>
 </li>
 </ul>
 
 </ul>
 
-
-<img 
-loading="lazy"
-alt=""
-onClick={navigateEcart}
+<img
 src={Cart}
+onClick={navigateEcart}
 className="fa fa-shopping-cart navProfile_img"
 ></img>
-
 
 {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
 
 <ul>
 <li className="navProfile_">
-<a href="">MY CART</a>
+<a href="">My Cart</a>
 </li>
 </ul>
 
@@ -477,7 +475,7 @@ loading="lazy"
 />
 
 <li onClick={navitoAccount} style={{ marginLeft: "-.5em" }}>
-<a href="">My Account</a>
+<a href="">MY ACCOUNT</a>
 </li>
 </div>
 </div>
