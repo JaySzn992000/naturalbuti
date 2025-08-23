@@ -6,8 +6,8 @@ for navBar ..  */
 
 .navProfile_img{
 color: rgb(255, 255, 255);
-font-size: 1.1rem;
 cursor: pointer;
+filter: invert(1);
 }
 
 
@@ -78,7 +78,7 @@ cursor: pointer;
 
 
 .Product_navbar .flex_nav_ProfileSection img {
-width: 42px;
+width: 30px;
 cursor: pointer;
 border-radius: 3px;
 padding: 3px;
@@ -163,7 +163,6 @@ gap: 0.4em;
 .fa-shopping-cart {
 margin-right: 0.3em;
 margin-left: 0.4em;
-font-size: 1.3rem;
 }
 
 .flex_nav_ProfileSection .nav_profileSection {
@@ -375,6 +374,7 @@ background-color: #d6b684;
 color: rgb(255, 255, 255);
 cursor: pointer;
 }
+
 
 .cart-count {
 font-size: 11px;

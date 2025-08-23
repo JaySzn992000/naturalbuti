@@ -15,12 +15,8 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-<<<<<<< HEAD
     'https://naturalbuti-jb4y.vercel.app',
-=======
-    'https://json-softech-z6gu.vercel.app',
->>>>>>> 4504f990fda7b4bb45cae64cebc543d30b278e4e
-    'https://namasyaa.vercel.app'
+    'https://naturalbuti-ycfw.vercel.app',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
