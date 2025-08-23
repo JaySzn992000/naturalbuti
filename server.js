@@ -13,6 +13,7 @@ require("dotenv").config();
 const pool = require("./config");
 
 
+
 app.use(cors({
   origin: [
     'https://naturalbuti-jb4y.vercel.app',
