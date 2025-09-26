@@ -49,9 +49,9 @@ return;
 
 try {
 
-// https://naturalbuti.onrender.com/fetchAdmin
+// http://localhost:3001/fetchAdmin
 
-const response = await fetch("https://naturalbuti.onrender.com/fetchAdmin", {
+const response = await fetch("http://localhost:3001/fetchAdmin", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({

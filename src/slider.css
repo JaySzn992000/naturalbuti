@@ -3,7 +3,7 @@ width: 100%;
 height: auto;
 overflow: hidden;
 position: relative;
-margin-top: 2.1em;
+margin-top: 1.2em;
 }
 
 
@@ -11,7 +11,6 @@ margin-top: 2.1em;
 width: 100%;
 cursor: pointer;
 }
-
 
 
 @media (max-width: 768px) {

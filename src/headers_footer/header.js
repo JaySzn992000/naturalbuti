@@ -68,13 +68,12 @@ const ShippNaviM = () => {
 ShipptNaviGate('/shipping')
 }
 
-
 return (
 
 <div>
 
 <Helmet>
-<title>Niti Arya - Header</title>
+<title>Naturalbuti - Header</title>
 <meta
 name="description"
 content="Explore the best quality pickles at Niti Arya. Shop now for a variety of delicious pickles with fast delivery."

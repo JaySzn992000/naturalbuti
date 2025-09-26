@@ -28,7 +28,7 @@ const [message, setMessage] = useState("");
 
 
 useEffect(() => {
-fetch(`https://naturalbuti.onrender.com/products/${id}`)
+fetch(`http://localhost:3001/products/${id}`)
 .then(res => res.json())
 .then(data => {
 });
@@ -39,7 +39,7 @@ useEffect(() => {
 const fetchProduct = async () => {
 try {
 const response = await axios.get(
-"https://naturalbuti.onrender.com/fetchProductslist"
+"http://localhost:3001/fetchProductslist"
 );
 const data = response.data;
 const product = data.find((product) => product.id === parseInt(id));
@@ -168,7 +168,7 @@ content="https://yourdomain.com/images/pickle-default.jpg"
 
 <img
 className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path}`}
+src={`http://localhost:3001${arrayStore.file_path}`}
 alt=''
 loading="lazy"
 />
@@ -177,7 +177,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path1}`}
+src={`http://localhost:3001${arrayStore.file_path1}`}
 alt=''
 loading="lazy"
 />
@@ -186,7 +186,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path2}`}
+src={`http://localhost:3001${arrayStore.file_path2}`}
 alt=''
 loading="lazy"
 />
@@ -195,7 +195,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path3}`}
+src={`http://localhost:3001${arrayStore.file_path3}`}
 alt=''
 loading="lazy"
 />
@@ -211,7 +211,7 @@ desktop view */}
 <div className="thumbnails-container">
 <img
 className="thumbnail"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path1}`}
+src={`http://localhost:3001${arrayStore.file_path1}`}
 alt="home made pickles"
 loading="lazy"
 onClick={() => handleThumbnailClick(arrayStore.file_path1)}
@@ -219,7 +219,7 @@ onClick={() => handleThumbnailClick(arrayStore.file_path1)}
 
 <img
 className="thumbnail"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path2}`}
+src={`http://localhost:3001${arrayStore.file_path2}`}
 alt="ingredients used pickles"
 loading="lazy"
 onClick={() => handleThumbnailClick(arrayStore.file_path2)}
@@ -227,7 +227,7 @@ onClick={() => handleThumbnailClick(arrayStore.file_path2)}
 
 <img
 className="thumbnail"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path3}`}
+src={`http://localhost:3001${arrayStore.file_path3}`}
 alt="customized pickles"
 onClick={() => handleThumbnailClick(arrayStore.file_path3)}
 loading="lazy"
@@ -243,7 +243,7 @@ with zoom */}
 <Zoom>
 <img
 className="product_img"
-src={`https://naturalbuti.onrender.com${mainImage}`}
+src={`http://localhost:3001${mainImage}`}
 alt={arrayStore.name}
 loading="lazy"
 />

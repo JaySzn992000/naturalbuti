@@ -216,7 +216,7 @@ value={productDescription}
 onChange={(e) => setProductDescription(e.target.value)}
 required
 placeholder="Description"
-maxLength={500}
+maxLength={1500}
 />
 
 

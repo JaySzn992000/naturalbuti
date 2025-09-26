@@ -26,8 +26,8 @@ return (
 <div className="slider_div">
 
 <Slider {...settings}>        
-<img src={img3} alt="Slide 3" />
 <img src={img1} alt="Slide 1" />
+<img src={img3} alt="Slide 3" />
 <img src={img2} alt="Slide 2" />
 </Slider>
 

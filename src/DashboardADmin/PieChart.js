@@ -60,34 +60,41 @@ fetchData();
 
 
 const options = {
-chart: {
-type: 'pie',
-},
-labels: labels,
-tooltip: {
-y: {
-formatter: function(value) {
-return `₹ ${value.toLocaleString()}`;
-}
-}
-},
-legend: {
-position: 'right',
-formatter: function(seriesName, opts) {
-return `${seriesName}: ₹ ${opts.w.globals.series[opts.seriesIndex].toLocaleString()}`;
-}
-},
-responsive: [{
-breakpoint: 480,
-options: {
-chart: {
-width: 300
-},
-legend: {
-position: 'bottom'
-}
-}
-}]
+    
+  chart: {
+    type: 'pie',
+  },
+  labels: labels,
+  tooltip: {
+    y: {
+      formatter: function (value) {
+        const num = parseFloat(value);
+        return `₹ ${Number.isInteger(num)
+          ? num.toLocaleString(undefined, { maximumFractionDigits: 0 })
+          : num.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+      }
+    }
+  },
+  legend: {
+    position: 'right',
+    formatter: function (seriesName, opts) {
+      const val = parseFloat(opts.w.globals.series[opts.seriesIndex]);
+      return `${seriesName}: ₹ ${Number.isInteger(val)
+        ? val.toLocaleString(undefined, { maximumFractionDigits: 0 })
+        : val.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+    }
+  },
+  responsive: [{
+    breakpoint: 480,
+    options: {
+      chart: {
+        width: 300
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  }]
 };
 
 if (loading) {

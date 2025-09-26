@@ -19,7 +19,7 @@ return (
 <h2 className="user_elig_h2"> User Eligibility </h2>
 <p>
 {" "}
-These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and Natural Buti (“Company”, “we”, “us”, or “our”), concerning your access to and use of the https://naturalbuti.com/ website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”). You agree that by accessing the Site, you have read, understood, and agreed to be bound by all of these Terms of Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY.
+These Terms of Use constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and Natural Buti (“Company”, “we”, “us”, or “our”), concerning your access to and use of the naturalbuti.vercel.app website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the “Site”). You agree that by accessing the Site, you have read, understood, and agreed to be bound by all of these Terms of Use. IF YOU DO NOT AGREE WITH ALL OF THESE TERMS OF USE, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SITE AND YOU MUST DISCONTINUE USE IMMEDIATELY.
 {" "}
 </p>
 </div>

@@ -23,17 +23,18 @@ flex-wrap: wrap;
 gap: .4em;
 }
 
+
 .single_product_card {
 position: relative;
 height: auto;
 margin-bottom: 2.1em;
 max-width: 237px;
-height: auto;
 padding: 1.1em;
+padding-bottom: 37px;
 text-align: start;
 border-radius: 3px;
-border: 1px solid rgba(27, 6, 6, 0.055);
 transition: transform 0.2s ease;
+box-shadow: 0 0 4px rgba(0,0,0,0.2);
 }
 
 
@@ -89,7 +90,7 @@ color: #888;
 .price_section {
 display: flex;
 align-items: center;
-gap: 0.3em;
+gap: 0.5em;
 width: auto;
 max-width: 79px;
 height: 34px;
@@ -143,11 +144,19 @@ color: #222;
 @media (max-width: 768px) {
 
 .single_product_card {
-width: 90%;
+max-width: 100%;
 border-radius: 2px;
+padding: 9px;
+padding-bottom: 27px;
 }
 
+.product_cards_wrapper .product_image{
+width: 100%;
+}
+
+
 .product_cards_wrapper {
+max-width: 100%;
 justify-content: center;
 gap: 0.3em;
 }
@@ -170,7 +179,10 @@ font-size: .8rem;
 
 
 .wishlist_icon{
-    font-size: 1rem;
+padding: 0px;
+font-size: 1.2rem;
+margin-right: .7em;
+margin-top: 0em;
 }
 
 }

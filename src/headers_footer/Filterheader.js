@@ -5,7 +5,6 @@ import headerdelivery from "../Slider/header4.img.jpg";
 import headersupport from "../Slider/header2.img.jpg";
 import headerfreeshipping from "../Slider/header1.img.jpg";
 import headeronlinepayment from "../Slider/header3.img.jpg";
-
 import "./Filterheader.css";
 
 const Filterheader = () => {
@@ -76,6 +75,8 @@ return (
 
 <div className="headerFlex">
 
+<section className="headerFlx_left">
+
 <img
 className="ImgHeader"
 loading="lazy"
@@ -95,6 +96,9 @@ src={headeronlinepayment} alt="logo"></img>
 className="ImgHeader"
 loading="lazy"
 src={headerdelivery} alt="logo"></img>
+
+    
+</section>
 
 </div>
 

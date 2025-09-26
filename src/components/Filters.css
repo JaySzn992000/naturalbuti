@@ -5,7 +5,7 @@ position: fixed;
 width: 317px;
 height: 91vh;
 padding-bottom: 87px;
-top: 5em;
+top: 5.3em;
 padding: 37px;
 overflow-y: auto;
 text-align: start;
@@ -144,22 +144,11 @@ border-radius: 11%;
 cursor: pointer;
 }
 
-<<<<<<< HEAD
-/* .filters input[type="range"]::-moz-range-thumb {
-width: 20px;
-height: 20px;
-background: #ff1493;
-border-radius: 50%;
-cursor: pointer;
-} */
-
 
 .filters input[type="range"]:focus {
 background: #ccc;
 }
 
-=======
->>>>>>> 4504f990fda7b4bb45cae64cebc543d30b278e4e
 
 .filter_ {
 position: absolute;

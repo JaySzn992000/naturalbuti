@@ -13,11 +13,10 @@ require("dotenv").config();
 const pool = require("./config");
 
 
-
 app.use(cors({
   origin: [
-    'https://naturalbuti-jb4y.vercel.app',
-    'https://naturalbuti-ycfw.vercel.app',
+    'https://lavonne.vercel.app',
+    'http://localhost:3000',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -329,7 +328,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Mango Pickle']);
+const result = await pool.query(exactMatchQuery, ['AloeVeraGel']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -365,7 +364,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Chilli']);
+const result = await pool.query(exactMatchQuery, ['KasturiHaldi']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -436,7 +435,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Carrot']);
+const result = await pool.query(exactMatchQuery, ['BananaPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -508,7 +507,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Lemon']);
+const result = await pool.query(exactMatchQuery, ['LicoricePowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -544,7 +543,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Bitter']);
+const result = await pool.query(exactMatchQuery, ['HairGrowth']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -579,7 +578,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Garlic']);
+const result = await pool.query(exactMatchQuery, ['SandalwoodPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -685,7 +684,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Mixed']);
+const result = await pool.query(exactMatchQuery, ['BeetrootPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -837,33 +836,33 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 });
 
 
-// app.post("/fetchlogin", (req, res) => {
-// const FetchQuery = "SELECT * FROM registeration";
-// db.query(FetchQuery, (err, result) => {
-// if (err) {
-// console.log("Error fetched");
-// res.status(500).json({ message: "Error fetched", error: err.message });
-// } else {
-// console.log(result);
-// res.status(200).json(result);
-// }
-// });
-// });
-
-//
-
-app.post("/fetchlogin", async (req, res) => {
-const fetchQuery = "SELECT * FROM _registeration";
-
-try {
-const result = await pool.query(fetchQuery);
-console.log(result.rows);
-res.status(200).json(result.rows);
-} catch (err) {
-console.error("Error fetched:", err.message);
+app.post("/fetchlogin", (req, res) => {
+const FetchQuery = "SELECT * FROM registeration";
+db.query(FetchQuery, (err, result) => {
+if (err) {
+console.log("Error fetched");
 res.status(500).json({ message: "Error fetched", error: err.message });
+} else {
+console.log(result);
+res.status(200).json(result);
 }
 });
+});
+
+
+
+// app.post("/fetchlogin", async (req, res) => {
+// const fetchQuery = "SELECT * FROM _registeration";
+
+// try {
+// const result = await pool.query(fetchQuery);
+// console.log(result.rows);
+// res.status(200).json(result.rows);
+// } catch (err) {
+// console.error("Error fetched:", err.message);
+// res.status(500).json({ message: "Error fetched", error: err.message });
+// }
+// });
 
 
 // Forget Pass Login ,,
@@ -1363,149 +1362,149 @@ error: err.message,
 //  Registeration ...
 
 
-// app.post("/fetchAdmin", (req, res) => {
-// const { adminuser, adminpass } = req.body;
-
-// // SQL query to check
-// // if the credentials match
-// const insertQueryLogin =
-// "SELECT * FROM admindashboard WHERE adminuser = ? AND adminpass = ?";
-
-// db.query(insertQueryLogin, [adminuser, adminpass], (err, result) => {
-// if (err) {
-// console.log("Error fetching user:", err);
-// res
-// .status(500)
-// .json({
-// success: false,
-// message: "Error fetching data",
-// error: err.message,
-// });
-// return;
-// }
-
-// if (result.length > 0) {
-// // User found,
-// // login successful
-// console.log("Login successful");
-// res.status(200).json({ success: true, message: "Login successful" });
-// } else {
-// // No user found with
-// //  the provided credentials
-// console.log("Invalid credentials");
-// res.status(401).json({ success: false, message: "Invalid credentials" });
-// }
-// });
-// });
-
-app.post("/fetchAdmin", async (req, res) => {
+app.post("/fetchAdmin", (req, res) => {
 const { adminuser, adminpass } = req.body;
 
-const loginQuery = `
-SELECT * FROM _admindashboard
-WHERE adminuser = $1 AND adminpass = $2
-`;
+// SQL query to check
+// if the credentials match
+const insertQueryLogin =
+"SELECT * FROM admindashboard WHERE adminuser = ? AND adminpass = ?";
 
-try {
-const result = await pool.query(loginQuery, [adminuser, adminpass]);
-
-if (result.rows.length > 0) {
-// User found
-console.log("Login successful");
-return res.status(200).json({ success: true, message: "Login successful" });
-} else {
-// No match
-console.log("Invalid credentials");
-return res.status(401).json({ success: false, message: "Invalid credentials" });
-}
-} catch (err) {
-console.error("Error fetching user:", err.message);
-return res.status(500).json({
+db.query(insertQueryLogin, [adminuser, adminpass], (err, result) => {
+if (err) {
+console.log("Error fetching user:", err);
+res
+.status(500)
+.json({
 success: false,
 message: "Error fetching data",
 error: err.message,
 });
+return;
+}
+
+if (result.length > 0) {
+// User found,
+// login successful
+console.log("Login successful");
+res.status(200).json({ success: true, message: "Login successful" });
+} else {
+// No user found with
+//  the provided credentials
+console.log("Invalid credentials");
+res.status(401).json({ success: false, message: "Invalid credentials" });
 }
 });
+});
 
-
-// app.post("/registerAdmin", (req, res) => {
+// app.post("/fetchAdmin", async (req, res) => {
 // const { adminuser, adminpass } = req.body;
 
-// if (!adminuser || !adminpass) {
-// return res
-// .status(400)
-// .json({ success: false, message: "Username and password are required" });
+// const loginQuery = `
+// SELECT * FROM _admindashboard
+// WHERE adminuser = $1 AND adminpass = $2
+// `;
+
+// try {
+// const result = await pool.query(loginQuery, [adminuser, adminpass]);
+
+// if (result.rows.length > 0) {
+// // User found
+// console.log("Login successful");
+// return res.status(200).json({ success: true, message: "Login successful" });
+// } else {
+// // No match
+// console.log("Invalid credentials");
+// return res.status(401).json({ success: false, message: "Invalid credentials" });
 // }
-
-// // Check if the
-// // admin already exists
-
-// const checkAdminQuery = "SELECT * FROM admindashboard WHERE adminuser = ?";
-// const insertAdminQuery =
-// "INSERT INTO admindashboard (adminuser, adminpass) VALUES (?, ?)";
-
-// db.query(checkAdminQuery, [adminuser], (err, result) => {
-// if (err) {
-// console.log("Error checking admin:", err.message);
+// } catch (err) {
+// console.error("Error fetching user:", err.message);
 // return res.status(500).json({
 // success: false,
-// message: "Error checking admin",
+// message: "Error fetching data",
 // error: err.message,
 // });
 // }
-
-// if (result.length > 0) {
-// return res
-// .status(409)
-// .json({ success: false, message: "Admin username already exists!" });
-// }
-
-// // Insert
-// // the new admin
-// db.query(insertAdminQuery, [adminuser, adminpass], (insertErr) => {
-// if (insertErr) {
-// console.log("Error inserting admin:", insertErr.message);
-// return res.status(500).json({
-// success: false,
-// message: "Error inserting admin",
-// error: insertErr.message,
-// });
-// }
-
-// console.log("Admin registered successfully!");
-// return res
-// .status(201)
-// .json({ success: true, message: "Admin registered successfully!" });
-// });
-// });
 // });
 
 
-app.post('/registerAdmin', async (req, res) => {
-  const { adminuser, adminpass } = req.body;
-    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+app.post("/registerAdmin", (req, res) => {
+const { adminuser, adminpass } = req.body;
 
-  try {
-  const insertAdminQuery = `
-  INSERT INTO _admindashboard (adminuser, adminpass)
-  VALUES ($1, $2)
-  `;
-  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+if (!adminuser || !adminpass) {
+return res
+.status(400)
+.json({ success: false, message: "Username and password are required" });
+}
 
-    return res.status(200).json({
-      success: true,
-      message: "Admin registered successfully"
-    });
-  } catch (err) {
-    console.error("Error in /registerAdmin:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Server error while registering admin"
-    });
-  }
-  
+// Check if the
+// admin already exists
+
+const checkAdminQuery = "SELECT * FROM admindashboard WHERE adminuser = ?";
+const insertAdminQuery =
+"INSERT INTO admindashboard (adminuser, adminpass) VALUES (?, ?)";
+
+db.query(checkAdminQuery, [adminuser], (err, result) => {
+if (err) {
+console.log("Error checking admin:", err.message);
+return res.status(500).json({
+success: false,
+message: "Error checking admin",
+error: err.message,
 });
+}
+
+if (result.length > 0) {
+return res
+.status(409)
+.json({ success: false, message: "Admin username already exists!" });
+}
+
+// Insert
+// the new admin
+db.query(insertAdminQuery, [adminuser, adminpass], (insertErr) => {
+if (insertErr) {
+console.log("Error inserting admin:", insertErr.message);
+return res.status(500).json({
+success: false,
+message: "Error inserting admin",
+error: insertErr.message,
+});
+}
+
+console.log("Admin registered successfully!");
+return res
+.status(201)
+.json({ success: true, message: "Admin registered successfully!" });
+});
+});
+});
+
+
+// app.post('/registerAdmin', async (req, res) => {
+//   const { adminuser, adminpass } = req.body;
+//     console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+
+//   try {
+//   const insertAdminQuery = `
+//   INSERT INTO _admindashboard (adminuser, adminpass)
+//   VALUES ($1, $2)
+//   `;
+//   await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+
+//     return res.status(200).json({
+//       success: true,
+//       message: "Admin registered successfully"
+//     });
+//   } catch (err) {
+//     console.error("Error in /registerAdmin:", err);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error while registering admin"
+//     });
+//   }
+  
+// });
 
 
 // app.post("/addcartaddress", (req, res) => {
@@ -1586,7 +1585,7 @@ try {
 const client = await pool.connect();
 
 const insertQuery = `
-INSERT INTO custorder (
+INSERT INTO _custorder (
 name, mob, email, id, productname, price, quantity,
 gender, add_name, country, pincode, address, state,
 mobilenumber, alternativenumber, emailid,
@@ -1730,8 +1729,8 @@ setInterval(() => {
 
 
 const razorpayInstance = new Razorpay({
-key_id: "rzp_live_Zm7uF61IDcY0t9", //  Razorpay key_id
-key_secret: "FgZimfWqOEOLs4ejcIZHO7yc", // Razorpay key_secret
+key_id: "rzp_live_Kh5Fut1EpwDwF5", //  Razorpay key_id
+key_secret: "zV2WqzWm6CTf3qH5i0xnO1La", // Razorpay key_secret
 });
 
 app.post("/create-order", async (req, res) => {
@@ -1857,80 +1856,170 @@ res.status(400).json({ error: "Payment verification failed" });
 // }
 // );
 
-const storage = multer.diskStorage({
-destination: (req, file, cb) => {
-cb(null, "public/Images");
-},
-filename: (req, file, cb) => {
-cb(null, Date.now() + path.extname(file.originalname));
-},
+
+// Dashboard
+
+// Setting up
+// Multer for file uploads
+
+// Multer
+// storage configuration
+
+
+// 🔑 Cloudinary Config
+
+cloudinary.config({
+  cloud_name: "dwwmpm9qy", // आपका cloud_name
+  api_key: "428986251698984",
+  api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
 });
 
-const upload = multer({ storage });
+// ✅ Multer (temp folder)
+const upload = multer({ dest: "uploads/" });
 
+// ✅ Helper → file को Cloudinary पर upload करके URL return
+const uploadToCloudinary = async (file) => {
+  if (!file) return null;
+  const result = await cloudinary.uploader.upload(file.path, {
+    folder: "products",
+  });
+  fs.unlinkSync(file.path); // local temp file delete
+  return result.secure_url; // Cloudinary का URL
+};
+
+// ✅ Add Product API (PostgreSQL compatible)
 app.post(
-"/api/add-product",
-upload.fields([
-{ name: "image", maxCount: 1 },
-{ name: "imageone", maxCount: 1 },
-{ name: "imagetwo", maxCount: 1 },
-{ name: "imagethree", maxCount: 1 },
-]),
-async (req, res) => {
-const {
-category,
-name,
-price,
-sizes,
-stock,
-description,
-review,
-} = req.body;
+  "/api/add-product",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "imageone", maxCount: 1 },
+    { name: "imagetwo", maxCount: 1 },
+    { name: "imagethree", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      console.log("📩 Body Data:", req.body);
+      console.log("📸 Files Data:", req.files);
 
-const imagePath = req.files.image
-? `/Images/${req.files.image[0].filename}`
-: null;
-const imagePathOne = req.files.imageone
-? `/Images/${req.files.imageone[0].filename}`
-: null;
-const imagePathTwo = req.files.imagetwo
-? `/Images/${req.files.imagetwo[0].filename}`
-: null;
-const imagePathThree = req.files.imagethree
-? `/Images/${req.files.imagethree[0].filename}`
-: null;
+      const { category, name, price, sizes, stock, description, review } =
+        req.body;
 
-const query = `
-INSERT INTO _imgproduct (
-img, name, price, file_path, sizes, file_path1, file_path2,
-file_path3, stock, description, review
-)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-`;
+      // Cloudinary Upload
+      const imagePath = await uploadToCloudinary(req.files.image?.[0]);
+      const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
+      const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
+      const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
 
-const values = [
-category,
-name,
-price,
-imagePath,
-sizes,
-imagePathOne,
-imagePathTwo,
-imagePathThree,
-stock,
-description,
-review,
-];
+      // ✅ PostgreSQL Insert Query
+      const query = `
+        INSERT INTO _imgproduct 
+        (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+        RETURNING id;
+      `;
 
-try {
-await pool.query(query, values);
-res.status(200).send("Product added successfully");
-} catch (err) {
-console.error("Error inserting product into database:", err.message);
-res.status(500).send("Error adding product");
-}
-}
+      const values = [
+        category,
+        name,
+        price,
+        imagePath,
+        sizes,
+        imagePathOne,
+        imagePathTwo,
+        imagePathThree,
+        stock,
+        description,
+        review,
+      ];
+
+      const result = await pool.query(query, values);
+
+      res.status(200).json({
+        message: "✅ Product added successfully",
+        productId: result.rows[0].id,
+      });
+    } catch (err) {
+      console.error("❌ Upload failed:", err);
+      res.status(500).send("Upload failed");
+    }
+  }
 );
+
+
+// const storage = multer.diskStorage({
+// destination: (req, file, cb) => {
+// cb(null, "public/Images");
+// },
+// filename: (req, file, cb) => {
+// cb(null, Date.now() + path.extname(file.originalname));
+// },
+// });
+
+// const upload = multer({ storage });
+
+// app.post(
+// "/api/add-product",
+// upload.fields([
+// { name: "image", maxCount: 1 },
+// { name: "imageone", maxCount: 1 },
+// { name: "imagetwo", maxCount: 1 },
+// { name: "imagethree", maxCount: 1 },
+// ]),
+// async (req, res) => {
+// const {
+// category,
+// name,
+// price,
+// sizes,
+// stock,
+// description,
+// review,
+// } = req.body;
+
+// const imagePath = req.files.image
+// ? `/Images/${req.files.image[0].filename}`
+// : null;
+// const imagePathOne = req.files.imageone
+// ? `/Images/${req.files.imageone[0].filename}`
+// : null;
+// const imagePathTwo = req.files.imagetwo
+// ? `/Images/${req.files.imagetwo[0].filename}`
+// : null;
+// const imagePathThree = req.files.imagethree
+// ? `/Images/${req.files.imagethree[0].filename}`
+// : null;
+
+// const query = `
+// INSERT INTO _imgproduct (
+// img, name, price, file_path, sizes, file_path1, file_path2,
+// file_path3, stock, description, review
+// )
+// VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+// `;
+
+// const values = [
+// category,
+// name,
+// price,
+// imagePath,
+// sizes,
+// imagePathOne,
+// imagePathTwo,
+// imagePathThree,
+// stock,
+// description,
+// review,
+// ];
+
+// try {
+// await pool.query(query, values);
+// res.status(200).send("Product added successfully");
+// } catch (err) {
+// console.error("Error inserting product into database:", err.message);
+// res.status(500).send("Error adding product");
+// }
+// }
+// );
 
 //
 
@@ -2145,33 +2234,33 @@ res.status(200).json({ products: result, total: totalProducts });
 });
 
 
-// app.get("/fetchCutomerOrder", (req, res) => {
-// const productQuery = "SELECT * FROM custorder";
-// db.query(productQuery, (err, result) => {
-// if (err) {
-// console.log("Fetch error");
-// res.status(500).json({ message: "Fetch error", error: err.message });
-// } else {
-// const totalProducts = result.length;
-// res.status(200).json({ products: result, total: totalProducts });
-// }
-// });
-// });
-
-
-app.get("/fetchCutomerOrder", async (req, res) => {
-const productQuery = "SELECT * FROM _custorder";
-
-try {
-const result = await pool.query(productQuery);
-const totalProducts = result.rows.length;
-
-res.status(200).json({ products: result.rows, total: totalProducts });
-} catch (err) {
-console.log("Fetch error:", err.message);
+app.get("/fetchCutomerOrder", (req, res) => {
+const productQuery = "SELECT * FROM custorder";
+db.query(productQuery, (err, result) => {
+if (err) {
+console.log("Fetch error");
 res.status(500).json({ message: "Fetch error", error: err.message });
+} else {
+const totalProducts = result.length;
+res.status(200).json({ products: result, total: totalProducts });
 }
 });
+});
+
+
+// app.get("/fetchCutomerOrder", async (req, res) => {
+// const productQuery = "SELECT * FROM _custorder";
+
+// try {
+// const result = await pool.query(productQuery);
+// const totalProducts = result.rows.length;
+
+// res.status(200).json({ products: result.rows, total: totalProducts });
+// } catch (err) {
+// console.log("Fetch error:", err.message);
+// res.status(500).json({ message: "Fetch error", error: err.message });
+// }
+// });
 
 
 // app.post("/fetchCutomerOrder", (req, res) => {
@@ -2193,6 +2282,7 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // res.json({ products: results, total: results.length });
 // });
 // });
+
 
 
 app.post("/fetchCutomerOrder", async (req, res) => {

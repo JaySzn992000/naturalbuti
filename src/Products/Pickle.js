@@ -17,7 +17,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("https://naturalbuti.onrender.com/fetchProductslist")
+.get("http://localhost:3001/fetchProductslist")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(limit ? response.data.slice(0, limit) : response.data);
@@ -30,7 +30,7 @@ console.error("Error fetching products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("https://naturalbuti.onrender.com/fetchProductslist", {
+.get("http://localhost:3001/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -114,7 +114,7 @@ wishlistStatus[product.id] ? "active_wishlist" : ""
 
 <Link to={`/product/${product.id}`}>
 <img
-src={`https://naturalbuti.onrender.com${product.file_path}`}
+src={`http://localhost:3001${product.file_path}`}
 alt={product.name}
 className="product_image"
 />
@@ -151,9 +151,12 @@ className="review_icon"
 </section>
 </div>
 
-<div className="header_Filter">
+{/* <div className="header_Filter">
 {showFilters && <Filterheader />}
-</div>
+</div> */}
+
+{/* <Filterheader></Filterheader> */}
+
 </div>
 
 );
