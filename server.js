@@ -6,6 +6,7 @@ const multer = require("multer");
 const path = require("path");
 const Razorpay = require("razorpay");
 const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
 const app = express(); 
 
 
@@ -15,8 +16,7 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-    'https://lavonne.vercel.app',
-    'http://localhost:3000',
+    'https://naturalbuti.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -779,7 +779,6 @@ console.error("❌ Database query failed:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
 });
-
 
 
 // app.get("/fetchProductslist", (req, res) => {
@@ -1778,6 +1777,8 @@ res.status(400).json({ error: "Payment verification failed" });
 }
 });
 
+
+
 // Dashboard
 
 // Setting up
@@ -1865,7 +1866,6 @@ res.status(400).json({ error: "Payment verification failed" });
 // Multer
 // storage configuration
 
-
 // 🔑 Cloudinary Config
 
 cloudinary.config({
@@ -1943,6 +1943,7 @@ app.post(
       res.status(500).send("Upload failed");
     }
   }
+
 );
 
 
