@@ -44,12 +44,17 @@ formData.append("imageone", productImageOne);
 formData.append("imagetwo", productImageTwo);
 formData.append("imagethree", productImageThree);
 
+console.log("📌 Sending Product Data:");
+for (let pair of formData.entries()) {
+console.log(pair[0], ":", pair[1]);
+}
 
 try {
 const response = await fetch("https://naturalbuti.onrender.com/api/add-product", {
 method: "POST",
 body: formData,
 });
+
 
 if (response.ok) {
 alert("Product added successfully!");
