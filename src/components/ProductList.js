@@ -161,7 +161,7 @@ wishlistStatus[productlist.id] ? "wishlist-active" : ""
 <Link to={`/products/${slugify(productlist.name)}/${productlist.id}`}>
 
 <img
-src={`https://naturalbuti.onrender.com${productlist.file_path}`}
+src={productlist.file_path}
 alt={productlist.name}
 loading="lazy"
 />
