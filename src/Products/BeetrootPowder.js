@@ -151,7 +151,7 @@ wishlistStatus[product.id] ? "wishlist-active" : ""
 
 <Link to={`/product/${product.id}`}>
 <img
-src={`http://localhost:3001${product.file_path}`}
+src={product.file_path}
 alt={product.name}
 />
 </Link>
