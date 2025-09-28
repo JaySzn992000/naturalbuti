@@ -184,7 +184,7 @@ loading="lazy"
 <div className="review_Cntnr">
 <img id="Review_Img"
 src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"></img>
-<li style={{marginTop : '.5em', marginLeft : '-.2em'}}>|</li>
+<li style={{marginTop : '.5em', marginLeft : '-.2em'}}></li>
 <li className="fa_Review">{productlist.review}</li>
 </div>
 
