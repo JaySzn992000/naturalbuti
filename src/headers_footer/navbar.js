@@ -292,7 +292,7 @@ return (
 <div>
 
 <Helmet>
-<title>Niti Arya - Pickles & More</title>
+<title>Naturalbuti - Header</title>
 <meta
 name="description"
 content="Niti Arya offers a variety of pickles including mango, carrot, garlic, and more. Shop now for fresh and delicious pickles."
