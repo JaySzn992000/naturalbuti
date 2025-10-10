@@ -743,3 +743,32 @@ margin-top: 1.2em;
 }
 
 }
+
+
+
+@media (min-width : 1025px) and (max-width : 1516px) {
+    
+.div_ul .fa-angle-down {
+display: none;
+}
+
+.Product_navbar .nav_ul {
+display: flex;
+gap: 1em;
+margin-left: -.7em;
+margin-right: .5em;
+}
+
+/* .Product_navbar .nav_ul {
+display: none;
+} */
+
+.flex_nav_ProfileSection {
+    gap: .2em;
+}
+
+.afterSearch_prodct {
+width: 227px;
+}
+
+}
