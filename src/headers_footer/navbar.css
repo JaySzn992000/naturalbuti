@@ -44,7 +44,8 @@ top: 0;
 .Product_navbar .nav_ul {
 display: flex;
 gap: 1.7em;
-margin-left: 1.7em;
+margin-left: 0em;
+margin-right: .5em;
 }
 
 
