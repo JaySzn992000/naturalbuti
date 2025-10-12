@@ -309,6 +309,25 @@ padding: 17px;
 }
 
 
+.mobile-slider {
+display: block !important;
+width: 100%;
+margin: 0 auto;
+}
+
+.slick-slider {
+width: 100% !important;
+margin: 0 auto !important;
+}
+
+.slick-slide {
+text-align: center;
+}
+
+.slick-dots {
+bottom: -30px !important;
+}
+
 }
 
 /*  */
