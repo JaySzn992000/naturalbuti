@@ -208,6 +208,9 @@ loading="lazy"
 desktop view */}
 
 
+{/* Thumbnails for 
+desktop view */}
+
 <div className="thumbnails-container">
 <img
 className="thumbnail"
@@ -233,7 +236,6 @@ onClick={() => handleThumbnailClick(arrayStore.file_path3)}
 loading="lazy"
 />
 </div>
-
 
 <div className="product-img-container">
 
