@@ -162,51 +162,49 @@ content="https://yourdomain.com/images/pickle-default.jpg"
 
 <div className="product-details">
 
+{/* Mobile Slider */}
+
 <div className="mobile-slider">
-<Slider {...sliderSettings}>
-<div>
 
-<img
-className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path}`}
-alt=''
-loading="lazy"
-/>
+  <Slider {...sliderSettings}>
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path}
+        alt={`${arrayStore.name} - Image 1`}
+        loading="lazy"
+      />
+    </div>
+
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path1}
+        alt={`${arrayStore.name} - Image 2`}
+        loading="lazy"
+      />
+    </div>
+
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path2}
+        alt={`${arrayStore.name} - Image 3`}
+        loading="lazy"
+      />
+    </div>
+
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path3}
+        alt={`${arrayStore.name} - Image 4`}
+        loading="lazy"
+      />
+    </div>
+  </Slider>
+  
 </div>
-<div>
-
-<img
-className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path1}`}
-alt=''
-loading="lazy"
-/>
-</div>
-<div>
-
-<img
-className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path2}`}
-alt=''
-loading="lazy"
-/>
-</div>
-<div>
-
-<img
-className="product_img"
-src={`https://naturalbuti.onrender.com${arrayStore.file_path3}`}
-alt=''
-loading="lazy"
-/>
-</div>
-</Slider>
-
-</div>
-
-{/* Thumbnails for 
-desktop view */}
-
 
 {/* Thumbnails for 
 desktop view */}
@@ -236,6 +234,7 @@ onClick={() => handleThumbnailClick(arrayStore.file_path3)}
 loading="lazy"
 />
 </div>
+
 
 <div className="product-img-container">
 
@@ -368,3 +367,4 @@ cart: state.cart,
 });
 
 export default connect(mapStateToProps, { addToCart })(ProductDetails);
+
