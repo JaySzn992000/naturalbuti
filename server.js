@@ -1427,83 +1427,83 @@ res.status(401).json({ success: false, message: "Invalid credentials" });
 // });
 
 
-app.post("/registerAdmin", (req, res) => {
-const { adminuser, adminpass } = req.body;
+// app.post("/registerAdmin", (req, res) => {
+// const { adminuser, adminpass } = req.body;
 
-if (!adminuser || !adminpass) {
-return res
-.status(400)
-.json({ success: false, message: "Username and password are required" });
-}
+// if (!adminuser || !adminpass) {
+// return res
+// .status(400)
+// .json({ success: false, message: "Username and password are required" });
+// }
 
-// Check if the
-// admin already exists
+// // Check if the
+// // admin already exists
 
-const checkAdminQuery = "SELECT * FROM admindashboard WHERE adminuser = ?";
-const insertAdminQuery =
-"INSERT INTO admindashboard (adminuser, adminpass) VALUES (?, ?)";
+// const checkAdminQuery = "SELECT * FROM admindashboard WHERE adminuser = ?";
+// const insertAdminQuery =
+// "INSERT INTO admindashboard (adminuser, adminpass) VALUES (?, ?)";
 
-db.query(checkAdminQuery, [adminuser], (err, result) => {
-if (err) {
-console.log("Error checking admin:", err.message);
-return res.status(500).json({
-success: false,
-message: "Error checking admin",
-error: err.message,
-});
-}
-
-if (result.length > 0) {
-return res
-.status(409)
-.json({ success: false, message: "Admin username already exists!" });
-}
-
-// Insert
-// the new admin
-db.query(insertAdminQuery, [adminuser, adminpass], (insertErr) => {
-if (insertErr) {
-console.log("Error inserting admin:", insertErr.message);
-return res.status(500).json({
-success: false,
-message: "Error inserting admin",
-error: insertErr.message,
-});
-}
-
-console.log("Admin registered successfully!");
-return res
-.status(201)
-.json({ success: true, message: "Admin registered successfully!" });
-});
-});
-});
-
-
-// app.post('/registerAdmin', async (req, res) => {
-//   const { adminuser, adminpass } = req.body;
-//     console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
-
-//   try {
-//   const insertAdminQuery = `
-//   INSERT INTO _admindashboard (adminuser, adminpass)
-//   VALUES ($1, $2)
-//   `;
-//   await pool.query(insertAdminQuery, [adminuser, adminpass]); 
-
-//     return res.status(200).json({
-//       success: true,
-//       message: "Admin registered successfully"
-//     });
-//   } catch (err) {
-//     console.error("Error in /registerAdmin:", err);
-//     return res.status(500).json({
-//       success: false,
-//       message: "Server error while registering admin"
-//     });
-//   }
-  
+// db.query(checkAdminQuery, [adminuser], (err, result) => {
+// if (err) {
+// console.log("Error checking admin:", err.message);
+// return res.status(500).json({
+// success: false,
+// message: "Error checking admin",
+// error: err.message,
 // });
+// }
+
+// if (result.length > 0) {
+// return res
+// .status(409)
+// .json({ success: false, message: "Admin username already exists!" });
+// }
+
+// // Insert
+// // the new admin
+// db.query(insertAdminQuery, [adminuser, adminpass], (insertErr) => {
+// if (insertErr) {
+// console.log("Error inserting admin:", insertErr.message);
+// return res.status(500).json({
+// success: false,
+// message: "Error inserting admin",
+// error: insertErr.message,
+// });
+// }
+
+// console.log("Admin registered successfully!");
+// return res
+// .status(201)
+// .json({ success: true, message: "Admin registered successfully!" });
+// });
+// });
+// });
+
+
+app.post('/registerAdmin', async (req, res) => {
+  const { adminuser, adminpass } = req.body;
+    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+
+  try {
+  const insertAdminQuery = `
+  INSERT INTO _admindashboard (adminuser, adminpass)
+  VALUES ($1, $2)
+  `;
+  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+
+    return res.status(200).json({
+      success: true,
+      message: "Admin registered successfully"
+    });
+  } catch (err) {
+    console.error("Error in /registerAdmin:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error while registering admin"
+    });
+  }
+  
+});
 
 
 // app.post("/addcartaddress", (req, res) => {
