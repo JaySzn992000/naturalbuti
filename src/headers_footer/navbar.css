@@ -25,7 +25,7 @@ justify-content: space-between;
 align-items: center;
 width: 100%;
 padding: 3px 57px 3px 57px;
-z-index: 9999;
+z-index: 99999;
 position: relative;
 height: 77px;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.052);
