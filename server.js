@@ -835,62 +835,62 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 });
 
 
-app.post("/fetchlogin", (req, res) => {
-const FetchQuery = "SELECT * FROM registeration";
-db.query(FetchQuery, (err, result) => {
-if (err) {
-console.log("Error fetched");
+// app.post("/fetchlogin", (req, res) => {
+// const FetchQuery = "SELECT * FROM registeration";
+// db.query(FetchQuery, (err, result) => {
+// if (err) {
+// console.log("Error fetched");
+// res.status(500).json({ message: "Error fetched", error: err.message });
+// } else {
+// console.log(result);
+// res.status(200).json(result);
+// }
+// });
+// });
+
+
+
+app.post("/fetchlogin", async (req, res) => {
+const fetchQuery = "SELECT * FROM _registeration";
+
+try {
+const result = await pool.query(fetchQuery);
+console.log(result.rows);
+res.status(200).json(result.rows);
+} catch (err) {
+console.error("Error fetched:", err.message);
 res.status(500).json({ message: "Error fetched", error: err.message });
-} else {
-console.log(result);
-res.status(200).json(result);
 }
 });
+
+
+Forget Pass Login ,,
+
+Verify Email Endpoint
+app.post("/verifyemail", (req, res) => {
+const { email } = req.body;
+
+if (!email) {
+return res.status(400).json({ message: "Email is required" });
+}
+
+const CheckEmailQuery = "SELECT * FROM registeration WHERE email = ?";
+
+db.query(CheckEmailQuery, [email], (err, result) => {
+if (err) {
+console.log("Error fetching email");
+return res
+.status(500)
+.json({ message: "Error fetching email", error: err.message });
+}
+
+if (result.length === 0) {
+return res.status(404).json({ message: "Email not found" });
+}
+
+return res.status(200).json({ message: "Email verified" });
 });
-
-
-
-// app.post("/fetchlogin", async (req, res) => {
-// const fetchQuery = "SELECT * FROM _registeration";
-
-// try {
-// const result = await pool.query(fetchQuery);
-// console.log(result.rows);
-// res.status(200).json(result.rows);
-// } catch (err) {
-// console.error("Error fetched:", err.message);
-// res.status(500).json({ message: "Error fetched", error: err.message });
-// }
-// });
-
-
-// Forget Pass Login ,,
-
-// Verify Email Endpoint
-// app.post("/verifyemail", (req, res) => {
-// const { email } = req.body;
-
-// if (!email) {
-// return res.status(400).json({ message: "Email is required" });
-// }
-
-// const CheckEmailQuery = "SELECT * FROM registeration WHERE email = ?";
-
-// db.query(CheckEmailQuery, [email], (err, result) => {
-// if (err) {
-// console.log("Error fetching email");
-// return res
-// .status(500)
-// .json({ message: "Error fetching email", error: err.message });
-// }
-
-// if (result.length === 0) {
-// return res.status(404).json({ message: "Email not found" });
-// }
-
-// return res.status(200).json({ message: "Email verified" });
-// });
-// });
+});
 
 app.post("/verifyemail", async (req, res) => {
 const { email } = req.body;
