@@ -864,7 +864,7 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 });
 
 
-Forget Pass Login ,,
+// Forget Pass Login ,,
 
 Verify Email Endpoint
 app.post("/verifyemail", (req, res) => {
