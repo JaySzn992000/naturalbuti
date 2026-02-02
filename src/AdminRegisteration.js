@@ -57,7 +57,7 @@ return;
 }
 
 try {
-const response = await fetch("http://localhost:3000/registerAdmin", {
+const response = await fetch("http://naturalbuti.onrender.com/registerAdmin", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
