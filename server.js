@@ -964,8 +964,7 @@ return res
 }
 
 const updatePasswordQuery =
-"UPDATE _registeration SET password = $1 WHERE email = $2";
-
+"UPDATE _admindashboard SET adminpass = ? WHERE adminuser = ?";
 try {
 await pool.query(updatePasswordQuery, [password, email]);
 
@@ -1250,17 +1249,16 @@ message: "Username and new password are required",
 });
 }
 
-const checkUserQuery = "SELECT * FROM _admindashboard WHERE _adminuser = $1";
+const checkUserQuery = "SELECT * FROM _admindashboard WHERE adminuser = ?";
+
 const updatePasswordQuery =
 "UPDATE _admindashboard SET _adminpass = $1 WHERE _adminuser = $2";
 
 try {
 const result = await pool.query(checkUserQuery, [adminuser]);
 
-if (result.rows.length === 0) {
-return res
-.status(404)
-.json({ success: false, message: "User not found!" });
+if (result[0].length === 0) {
+  return res.status(404).json({ success: false, message: "User not found!" });
 }
 
 await pool.query(updatePasswordQuery, [newPassword, adminuser]);
