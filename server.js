@@ -868,30 +868,32 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 
 // Verify Email Endpoint
 
-app.post("/verifyemail", (req, res) => {
-const { email } = req.body;
+// app.post("/verifyemail", (req, res) => {
+// const { email } = req.body;
 
-if (!email) {
-return res.status(400).json({ message: "Email is required" });
-}
+// if (!email) {
+// return res.status(400).json({ message: "Email is required" });
+// }
 
-const CheckEmailQuery = "SELECT * FROM registeration WHERE email = ?";
+// const CheckEmailQuery = "SELECT * FROM registeration WHERE email = ?";
 
-db.query(CheckEmailQuery, [email], (err, result) => {
-if (err) {
-console.log("Error fetching email");
-return res
-.status(500)
-.json({ message: "Error fetching email", error: err.message });
-}
+// db.query(CheckEmailQuery, [email], (err, result) => {
+// if (err) {
+// console.log("Error fetching email");
+// return res
+// .status(500)
+// .json({ message: "Error fetching email", error: err.message });
+// }
 
-if (result.length === 0) {
-return res.status(404).json({ message: "Email not found" });
-}
+// if (result.length === 0) {
+// return res.status(404).json({ message: "Email not found" });
+// }
 
-return res.status(200).json({ message: "Email verified" });
-});
-});
+// return res.status(200).json({ message: "Email verified" });
+// });
+// });
+
+
 
 app.post("/verifyemail", async (req, res) => {
 const { email } = req.body;
