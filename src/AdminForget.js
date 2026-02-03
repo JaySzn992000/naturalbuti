@@ -45,7 +45,7 @@ return;
 }
 
 try {
-const response = await fetch("http://naturalbuti.onrender.com/resetAdminPassword", {
+const response = await fetch("https://naturalbuti.onrender.com/resetAdminPassword", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
