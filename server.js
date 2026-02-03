@@ -1250,44 +1250,29 @@ app.post("/resetAdminPassword", async (req, res) => {
   const { adminuser, newPassword } = req.body;
 
   if (!adminuser || !newPassword) {
-    return res.status(400).json({
-      success: false,
-      message: "Username and new password are required",
-    });
+    return res.status(400).json({ message: "Missing fields" });
   }
-
-  const checkUserQuery =
-    "SELECT * FROM _admindashboard WHERE adminuser = $1";
-
-  const updatePasswordQuery =
-    "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2";
 
   try {
-    const result = await pool.query(checkUserQuery, [adminuser]);
+    const checkUser = await pool.query(
+      "SELECT * FROM _admindashboard WHERE adminuser = $1",
+      [adminuser]
+    );
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found!",
-      });
+    if (checkUser.rows.length === 0) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    await pool.query(updatePasswordQuery, [newPassword, adminuser]);
+    await pool.query(
+      "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
+      [newPassword, adminuser]
+    );
 
-    return res.status(200).json({
-      success: true,
-      message: "Password updated successfully!",
-    });
-
+    res.json({ message: "Password updated successfully" });
   } catch (err) {
-    console.error("RESET PASSWORD ERROR:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Server error",
-    });
+    res.status(500).json({ message: "Error updating password", error: err.message });
   }
 });
-
 
 
 // Admin_Update
