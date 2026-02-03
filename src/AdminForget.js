@@ -17,8 +17,12 @@ const [showPassword, setShowPassword] = useState(false);
 const [showRetypePassword, setShowRetypePassword] = useState(false);
 
 const inputHandler = (e) => {
-  const { name, value } = e.target;
-  setFormData({ ...formData, [name]: value.replace(/\s/g, "") });
+setFormData({ ...formData, [e.target.name]: e.target.value });
+
+let { name, value } = e.target;
+value = value.replace(/\s/g, "");
+setFormData({ ...formData, [name]: value });
+
 };
 
 const handleResetPassword = async (e) => {
@@ -41,7 +45,7 @@ return;
 }
 
 try {
-const response = await fetch("https://naturalbuti.onrender.com/resetAdminPassword", {
+const response = await fetch("http://naturalbuti.onrender.com/resetAdminPassword", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
