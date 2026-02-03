@@ -1251,10 +1251,10 @@ app.post("/resetAdminPassword", async (req, res) => {
   }
 
   const checkUserQuery =
-    "SELECT * FROM _admindashboard WHERE _adminuser = $1";
+    "SELECT * FROM _admindashboard WHERE adminuser = $1";
 
   const updatePasswordQuery =
-    "UPDATE _admindashboard SET _adminpass = $1 WHERE _adminuser = $2";
+    "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2";
 
   try {
     const result = await pool.query(checkUserQuery, [adminuser]);
@@ -1281,6 +1281,7 @@ app.post("/resetAdminPassword", async (req, res) => {
     });
   }
 });
+
 
 
 // Admin_Update
