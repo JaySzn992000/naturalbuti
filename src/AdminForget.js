@@ -17,13 +17,13 @@ const [showPassword, setShowPassword] = useState(false);
 const [showRetypePassword, setShowRetypePassword] = useState(false);
 
 const inputHandler = (e) => {
-setFormData({ ...formData, [e.target.name]: e.target.value });
-
-let { name, value } = e.target;
-value = value.replace(/\s/g, "");
-setFormData({ ...formData, [name]: value });
-
+  const { name, value } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value.replace(/\s/g, ""),
+  }));
 };
+
 
 const handleResetPassword = async (e) => {
 e.preventDefault();
