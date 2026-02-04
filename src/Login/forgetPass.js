@@ -121,8 +121,8 @@ headers: {
 "Content-Type": "application/json",
 },
 body: JSON.stringify({
-email: formdata.email,
-password: formdata.password,
+  adminuser: formdata.email,
+  newPassword: formdata.password,
 }),
 });
 
