@@ -45,18 +45,15 @@ setMessage("Please enter a valid email address.");
 return;
 }
 
-
 try {
-
-const response = await fetch("https://naturalbuti.onrender.com/resetpassword", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    email: formdata.email,
-    newPassword: formdata.password,
-  }),
+const response = await fetch("https://naturalbuti.onrender.com/verifyemail", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify({
+email: formdata.email,
+}),
 });
 
 const text = await response.text();
@@ -123,7 +120,7 @@ headers: {
 "Content-Type": "application/json",
 },
 body: JSON.stringify({
-  adminuser: formdata.email,
+  email: formdata.email,
   newPassword: formdata.password,
 }),
 });
