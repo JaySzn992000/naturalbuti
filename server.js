@@ -955,16 +955,16 @@ return res
 
 
 app.post("/resetpassword", async (req, res) => {
-  const { adminuser, newPassword } = req.body;
+  const { email, newPassword } = req.body;
 
-  if (!adminuser || !newPassword) {
+  if (!email || !newPassword) {
     return res.status(400).json({ message: "Missing fields" });
   }
 
   try {
     const checkUser = await pool.query(
-      "SELECT * FROM _admindashboard WHERE adminuser = $1",
-      [adminuser]
+      "SELECT * FROM _registeration WHERE email = $1",
+      [email]
     );
 
     if (checkUser.rows.length === 0) {
@@ -972,18 +972,15 @@ app.post("/resetpassword", async (req, res) => {
     }
 
     await pool.query(
-      "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
-      [newPassword, adminuser]
+      "UPDATE _registeration SET password = $1 WHERE email = $2",
+      [newPassword, email]
     );
 
     return res.json({ message: "Password updated successfully" });
 
   } catch (err) {
-    console.error("UPDATE ERROR:", err.message);
-    return res.status(500).json({
-      message: "Error updating password",
-      error: err.message,
-    });
+    console.error("RESET ERROR:", err.message);
+    return res.status(500).json({ message: "Server error" });
   }
 });
 
