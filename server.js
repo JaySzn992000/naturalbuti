@@ -2230,33 +2230,33 @@ res.status(200).json({ products: result, total: totalProducts });
 });
 
 
-app.get("/fetchCutomerOrder", (req, res) => {
-const productQuery = "SELECT * FROM custorder";
-db.query(productQuery, (err, result) => {
-if (err) {
-console.log("Fetch error");
-res.status(500).json({ message: "Fetch error", error: err.message });
-} else {
-const totalProducts = result.length;
-res.status(200).json({ products: result, total: totalProducts });
-}
-});
-});
-
-
-// app.get("/fetchCutomerOrder", async (req, res) => {
-// const productQuery = "SELECT * FROM _custorder";
-
-// try {
-// const result = await pool.query(productQuery);
-// const totalProducts = result.rows.length;
-
-// res.status(200).json({ products: result.rows, total: totalProducts });
-// } catch (err) {
-// console.log("Fetch error:", err.message);
+// app.get("/fetchCutomerOrder", (req, res) => {
+// const productQuery = "SELECT * FROM custorder";
+// db.query(productQuery, (err, result) => {
+// if (err) {
+// console.log("Fetch error");
 // res.status(500).json({ message: "Fetch error", error: err.message });
+// } else {
+// const totalProducts = result.length;
+// res.status(200).json({ products: result, total: totalProducts });
 // }
 // });
+// });
+
+
+app.get("/fetchCutomerOrder", async (req, res) => {
+const productQuery = "SELECT * FROM _custorder";
+
+try {
+const result = await pool.query(productQuery);
+const totalProducts = result.rows.length;
+
+res.status(200).json({ products: result.rows, total: totalProducts });
+} catch (err) {
+console.log("Fetch error:", err.message);
+res.status(500).json({ message: "Fetch error", error: err.message });
+}
+});
 
 
 // app.post("/fetchCutomerOrder", (req, res) => {
