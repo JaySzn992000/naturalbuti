@@ -105,7 +105,7 @@ DB_products_PRQuery ? "DB_products_PRQuery-inside" : ""
 <td>
 {DisDb.file_path && (
 <img
-src={`http://localhost:3001${DisDb.file_path}`}
+src={`https://naturalbuti.onrender.com${DisDb.file_path}`}
 alt={DisDb.name}
 className="product-img"
 />
