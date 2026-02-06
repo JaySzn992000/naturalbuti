@@ -1324,7 +1324,7 @@ return res
 
 const updateQuery = `
 UPDATE _admindashboard
-SET _adminuser = $1, _adminpass = $2
+SET adminuser = $1, adminpass = $2
 WHERE _adminuser = $3
 `;
 
