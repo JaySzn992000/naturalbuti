@@ -232,7 +232,7 @@ return (
 <td colSpan="1">
 {CusDB.file_path && (
 <img
-src={`http://localhost:3001${CusDB.file_path}`}
+src={CusDB.file_path}
 alt={CusDB.name}
 className="custorders-image"
 style={{
