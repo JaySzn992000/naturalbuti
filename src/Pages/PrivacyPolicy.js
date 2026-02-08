@@ -14,7 +14,6 @@ return (
 <div className="privacy_flex_">
 <div>
 <h1>Privacy Policy</h1>
-// <h2> Handcrafted Pickles & Delightful Flavors </h2>
 <p>
 {" "}
 The terms “We”/“Us”/“Our”/”Company” individually and collectively refer to Natural Buti   and the terms “You”/”Your”/“Yourself” refer to the users.
