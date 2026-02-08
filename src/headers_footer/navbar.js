@@ -524,7 +524,7 @@ loading="lazy"
 
 
 <li onClick={seeAllProducts}>
-<a href="">See All Pickles</a>
+<a href="">See All</a>
 </li>
 
 </div>
