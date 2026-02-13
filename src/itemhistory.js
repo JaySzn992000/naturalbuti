@@ -96,7 +96,7 @@ Purchase History ({quantities.length})
 <td>
 {item.file_path && (
 <img
-src={`http://localhost:3001${item.file_path}`}
+src={item.file_path}
 alt={item.productname}
 className="custorders-imageItem"
 />
