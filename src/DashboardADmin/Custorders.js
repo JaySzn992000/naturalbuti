@@ -128,7 +128,7 @@ if (result.success) {
 setcustomerOrder((prevOrders) =>
 prevOrders.map((order) =>
 order.razorpay_order_id === orderId
-? { ...order, status_order: "Delivered" }
+? { ...order, status_order: "Order Delivered" }
 : order
 )
 );
@@ -286,9 +286,9 @@ textAlign: "center"
 <button
 className="custOrderBtn"
 onClick={() => updateStatus(CusDB.razorpay_order_id)}
-disabled={CusDB.status_order === "Delivered"}
+disabled={CusDB.status_order === "Order Delivered"}
 > 
-{CusDB.status_order=== "Delivered" ? "Delivered" : "Mark as Delivered"}
+{CusDB.status_order=== "Order Delivered" ? "Delivered" : "Mark as Delivered"}
 </button>
 </td>
 
